@@ -1,0 +1,29 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+keystore/
+.secrets/
+
+# Node
+node_modules/
+dist/
+.next/
+*.log
+
+# Foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+backend/data/
+
+# OS / editor
+.DS_Store
+.vscode/
