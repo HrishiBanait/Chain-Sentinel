@@ -28,3 +28,11 @@ signature hash, and duplicate and unauthorized publishes rejected.
   transaction type was rejected. The backend reporter must send legacy transactions
   with an explicit gas price.
 - Forge labels the native currency "ETH" in cost estimates; the native token is tMSTC.
+
+### Update: what the fee error actually was
+The default (EIP-1559) deployment transaction was rejected with "gas tip cap 1,
+minimum needed 1000000000": the node enforces a minimum priority fee of 1 gwei and the
+default tip was 1 wei. A legacy transaction at 2 gwei (`--legacy --gas-price 2000000000`)
+was accepted. The earlier line saying only legacy transactions work is too strong; the
+verified requirement is tip >= 1 gwei. The backend reporter's fee settings will be
+confirmed with a real testnet transaction in Milestone 6.
