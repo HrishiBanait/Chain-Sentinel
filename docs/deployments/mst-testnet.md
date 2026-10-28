@@ -21,3 +21,10 @@ record proves only that the reporter submitted it and that it was included on-ch
 Independent checks performed with cast: receipt status, admin and reporter state,
 on-chain bytecode equal to the local build, event topic equal to the expected
 signature hash, and duplicate and unauthorized publishes rejected.
+
+## Deployment notes
+- The contract deployment was only accepted as a legacy (type 0) transaction with an
+  explicit gas price of 2 gwei (`--legacy --gas-price 2000000000`). The default
+  transaction type was rejected. The backend reporter must send legacy transactions
+  with an explicit gas price.
+- Forge labels the native currency "ETH" in cost estimates; the native token is tMSTC.
