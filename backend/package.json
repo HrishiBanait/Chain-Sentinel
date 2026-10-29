@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "check:connectivity": "tsx src/scripts/connectivity.ts"
+    "check:connectivity": "tsx src/scripts/connectivity.ts",
+    "probe:logs": "tsx src/scripts/probe-logs.ts"
   },
   "keywords": [],
   "author": "",

@@ -36,3 +36,23 @@ default tip was 1 wei. A legacy transaction at 2 gwei (`--legacy --gas-price 200
 was accepted. The earlier line saying only legacy transactions work is too strong; the
 verified requirement is tip >= 1 gwei. The backend reporter's fee settings will be
 confirmed with a real testnet transaction in Milestone 6.
+
+## Test fixture: DemoGuardedToken (not part of the product)
+A minimal token with an owner and pause switch, deployed only to generate real
+Transfer, OwnershipTransferred, Paused and Unpaused events for testing the detection
+rules. It will not be deployed to mainnet.
+
+| Item | Value |
+|---|---|
+| Contract | [0x0d3744ccc0979832d3e7b66ac689d5610abdb539](https://testnet.mstscan.com/address/0x0d3744ccc0979832d3e7b66ac689d5610abdb539) |
+| Deployment tx | [0xc94338901cb909735935b7893d74ebf9f9a0ef66bb97a676f11f799e4e33af10](https://testnet.mstscan.com/tx/0xc94338901cb909735935b7893d74ebf9f9a0ef66bb97a676f11f799e4e33af10) |
+
+## Test fixture: DemoGuardedToken (not part of the product)
+A minimal token with an owner and pause switch, deployed only to generate real
+Transfer, OwnershipTransferred, Paused and Unpaused events for testing the detection
+rules. It will not be deployed to mainnet.
+
+| Item | Value |
+|---|---|
+| Contract | [0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c](https://testnet.mstscan.com/address/0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c) |
+| Deployment tx | [0x49badd3fd5c337711121451416d00542558e61ee9587e53f293d7acf3aecc324](https://testnet.mstscan.com/tx/0x49badd3fd5c337711121451416d00542558e61ee9587e53f293d7acf3aecc324) |
