@@ -56,3 +56,12 @@ rules. It will not be deployed to mainnet.
 |---|---|
 | Contract | [0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c](https://testnet.mstscan.com/address/0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c) |
 | Deployment tx | [0x49badd3fd5c337711121451416d00542558e61ee9587e53f293d7acf3aecc324](https://testnet.mstscan.com/tx/0x49badd3fd5c337711121451416d00542558e61ee9587e53f293d7acf3aecc324) |
+
+## BridgeKey-authorized transaction
+`registerTarget(0x000000000000000000000000000000000000dEaD, 0)` sent from the BridgeKey
+account 0x52A1404119C7119986b8149f155B9bC1254F1047 through the wallet popup (target #3).
+Fees were chosen by the wallet (EIP-1559 type 2, effective gas price 1 gwei).
+
+| Item | Value |
+|---|---|
+| registerTarget tx | [0x1807fcba…ae27d](https://testnet.mstscan.com/tx/0x1807fcba5ff07f93e514e62a1dd61fcd7157a02856d6774f4d90f881f23ae27d) |

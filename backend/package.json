@@ -8,7 +8,8 @@
     "check:connectivity": "tsx src/scripts/connectivity.ts",
     "probe:logs": "tsx src/scripts/probe-logs.ts",
     "monitor": "tsx src/scripts/monitor.ts",
-    "report": "tsx src/scripts/report.ts"
+    "report": "tsx src/scripts/report.ts",
+    "api": "tsx src/scripts/api.ts"
   },
   "keywords": [],
   "author": "",

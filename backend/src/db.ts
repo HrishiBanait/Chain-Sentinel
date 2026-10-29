@@ -292,6 +292,13 @@ export class Store {
   }
 
   // ----------------------------------------------------------------- metrics
+  setMeta(key: string, value: string): void {
+    this.run(
+      "INSERT INTO schema_meta(key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+      key, value
+    );
+  }
+
   incr(name: string, by = 1): void {
     this.run(
       "INSERT INTO metrics(name, value) VALUES (?, ?) ON CONFLICT(name) DO UPDATE SET value = value + excluded.value",

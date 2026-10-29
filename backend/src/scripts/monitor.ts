@@ -30,9 +30,13 @@ for (const sig of ["SIGINT", "SIGTERM"] as const) process.on(sig, () => { stop =
 do {
   try {
     const r = await monitor.syncOnce();
+    store.setMeta("last_sync_at", String(Math.floor(Date.now() / 1000)));
+    store.setMeta("last_head", r.head.toString());
+    store.setMeta("last_safe_head", r.safeHead.toString());
     console.log(`head ${r.head} | safe ${r.safeHead} | checkpoint ${r.checkpoint} | +${r.events} events, +${r.alerts} alerts${r.reorg ? " | REORG HANDLED" : ""}`);
   } catch (e) {
     store.incr("sync_errors");
+    store.setMeta("last_error_at", String(Math.floor(Date.now() / 1000)));
     console.error(`sync error (state is consistent, will retry): ${(e as Error).message}`);
   }
   if (once || stop) break;
