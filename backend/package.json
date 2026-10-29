@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --import tsx --test src/test/*.test.ts",
     "check:connectivity": "tsx src/scripts/connectivity.ts",
-    "probe:logs": "tsx src/scripts/probe-logs.ts"
+    "probe:logs": "tsx src/scripts/probe-logs.ts",
+    "monitor": "tsx src/scripts/monitor.ts",
+    "report": "tsx src/scripts/report.ts"
   },
   "keywords": [],
   "author": "",

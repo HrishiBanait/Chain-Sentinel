@@ -11,7 +11,7 @@ cd "$(git rev-parse --show-toplevel)"
 
 echo "== gates =="
 (cd contracts && forge test -q)
-(cd backend && npx tsc --noEmit)
+(cd backend && npx tsc --noEmit && npm test --silent)
 echo "gates passed"
 
 git add -A
