@@ -37,6 +37,10 @@ export interface AlertWithTime {
   publish_tx_hash: string | null;
   published_at: number | null;
   source_block_timestamp: number | null;
+  publish_note: string | null;
+  publish_attempts: number | null;
+  publish_verified_at: number | null;
+  publish_block: number | null;
 }
 
 export interface AlertQuery {
@@ -122,9 +126,22 @@ export class ReadStore {
     );
   }
 
-  private static readonly ALERT_SELECT = `SELECT a.*, e.block_timestamp AS source_block_timestamp
+  private hasPublishLog(): boolean {
+    return !!this.one<{ name: string }>("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'publish_log'");
+  }
+
+  /** Alerts joined with the source event's time and, once the publisher has run, its bookkeeping. */
+  private alertSelect(): string {
+    const log = this.hasPublishLog();
+    return `SELECT a.*, e.block_timestamp AS source_block_timestamp,
+      ${log ? "l.last_error" : "NULL"} AS publish_note,
+      ${log ? "l.attempts" : "NULL"} AS publish_attempts,
+      ${log ? "l.verified_at" : "NULL"} AS publish_verified_at,
+      ${log ? "l.block_number" : "NULL"} AS publish_block
     FROM alerts a LEFT JOIN events e
-      ON e.chain_id = a.chain_id AND e.tx_hash = a.source_tx_hash AND e.log_index = a.source_log_index`;
+      ON e.chain_id = a.chain_id AND e.tx_hash = a.source_tx_hash AND e.log_index = a.source_log_index
+    ${log ? "LEFT JOIN publish_log l ON l.alert_id = a.alert_id" : ""}`;
+  }
 
   alerts(q: AlertQuery): { total: number; rows: AlertWithTime[] } {
     const where: string[] = [];
@@ -141,13 +158,23 @@ export class ReadStore {
     const w = where.length ? `WHERE ${where.join(" AND ")}` : "";
     const total = this.one<{ n: number }>(`SELECT COUNT(*) AS n FROM alerts a ${w}`, ...params)?.n ?? 0;
     const rows = this.all<AlertWithTime>(
-      `${ReadStore.ALERT_SELECT} ${w} ORDER BY a.block_number DESC, a.source_log_index DESC, a.id DESC LIMIT ? OFFSET ?`,
+      `${this.alertSelect()} ${w} ORDER BY a.block_number DESC, a.source_log_index DESC, a.id DESC LIMIT ? OFFSET ?`,
       ...params, q.limit, q.offset
     );
     return { total, rows };
   }
 
+  statusCounts(): Record<string, number> {
+    const out: Record<string, number> = {};
+    for (const r of this.all<{ status: string; n: number }>("SELECT status, COUNT(*) AS n FROM alerts GROUP BY status")) out[r.status] = r.n;
+    return out;
+  }
+
+  backlogCount(minSeverity: number): number {
+    return this.one<{ n: number }>("SELECT COUNT(*) AS n FROM alerts WHERE status = 'new' AND severity >= ?", minSeverity)?.n ?? 0;
+  }
+
   alertById(alertId: string): AlertWithTime | undefined {
-    return this.one<AlertWithTime>(`${ReadStore.ALERT_SELECT} WHERE a.alert_id = ?`, alertId);
+    return this.one<AlertWithTime>(`${this.alertSelect()} WHERE a.alert_id = ?`, alertId);
   }
 }

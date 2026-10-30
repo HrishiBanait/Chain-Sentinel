@@ -23,6 +23,13 @@ export interface ApiHealth {
   };
   counts?: { events: number; alerts: number; targets: number };
   counters?: Record<string, number>;
+  publisher?: {
+    status: "ok" | "stale" | "unknown";
+    lastRunAt: number | null;
+    secondsSinceLastRun: number | null;
+    backlog: number;
+    statuses: Record<string, number>;
+  };
 }
 
 export interface ApiTarget {
@@ -57,6 +64,10 @@ export interface ApiAlert {
   detectedAt: number;
   publishTxHash: string | null;
   publishedAt: number | null;
+  publishNote: string | null;
+  publishAttempts: number | null;
+  publishBlock: number | null;
+  verifiedAt: number | null;
 }
 
 export interface ApiAlertDetail extends ApiAlert {

@@ -113,6 +113,8 @@ export class Store {
     if (file !== ":memory:") mkdirSync(path.dirname(file), { recursive: true });
     this.db = new DatabaseSync(file);
     this.db.exec("PRAGMA journal_mode = WAL;");
+    this.db.exec("PRAGMA busy_timeout = 5000;");
+    this.db.exec("PRAGMA busy_timeout = 5000;");
     this.db.exec(DDL);
     this.run("INSERT OR IGNORE INTO schema_meta(key, value) VALUES ('schema_version', '1')");
   }

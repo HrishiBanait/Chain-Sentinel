@@ -15,6 +15,10 @@ export default function StatusBar({
     status === "ok" ? "bg-emerald-100 text-emerald-800" : status === "stale" ? "bg-red-100 text-red-800" : "bg-slate-200 text-slate-700";
   const label = status === "ok" ? "Monitor running" : status === "stale" ? "Monitor stale" : "Monitor status unknown";
   const m = health?.monitor;
+  const pub = health?.publisher;
+  const pubPill =
+    pub?.status === "ok" ? "bg-emerald-100 text-emerald-800" : pub?.status === "stale" ? "bg-red-100 text-red-800" : "bg-slate-200 text-slate-700";
+  const pubLabel = pub?.status === "ok" ? "Publisher running" : pub?.status === "stale" ? "Publisher stale" : "Publisher not seen";
 
   return (
     <header className="space-y-3">
@@ -34,6 +38,12 @@ export default function StatusBar({
             </span>
           )}
           <span className={`rounded-full px-3 py-1 text-xs font-semibold ${pill}`}>{label}</span>
+          {pub && (
+            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${pubPill}`}>
+              {pubLabel}
+              {pub.backlog > 0 ? ` · ${pub.backlog} waiting` : ""}
+            </span>
+          )}
         </div>
       </div>
 

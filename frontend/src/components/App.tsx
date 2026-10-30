@@ -18,9 +18,16 @@ export default function App() {
 
   const [minSeverity, setMinSeverity] = useState(0);
   const [targetFilter, setTargetFilter] = useState<number | null>(null);
+  const [includeOrphaned, setIncludeOrphaned] = useState(false);
   const alertsFn = useCallback(
-    () => api.alerts({ minSeverity: minSeverity > 0 ? minSeverity : undefined, targetId: targetFilter ?? undefined, limit: 50 }),
-    [minSeverity, targetFilter]
+    () =>
+      api.alerts({
+        minSeverity: minSeverity > 0 ? minSeverity : undefined,
+        targetId: targetFilter ?? undefined,
+        includeOrphaned,
+        limit: 50,
+      }),
+    [minSeverity, targetFilter, includeOrphaned]
   );
   const alerts = usePoll(alertsFn, 10_000);
 
@@ -38,7 +45,7 @@ export default function App() {
     async (label: string, data: `0x${string}`) => {
       const provider = wallet.provider;
       if (!c || !provider || !wallet.account) throw new Error("Connect a wallet first.");
-      if (wallet.chainId !== c.chainId) throw new Error(`Switch your wallet to ${c.chainName} first.`);
+      if (wallet.ainId !== c.chainId) throw new Error(`Switch your wallet to ${c.chainName} first.`);
       // No fee fields: the wallet chooses them (verified with BridgeKey on MST Testnet).
       const hash = (await provider.request({
         method: "eth_sendTransaction",
@@ -79,6 +86,10 @@ export default function App() {
         onMinSeverity={setMinSeverity}
         targetFilter={targetFilter}
         onTargetFilter={setTargetFilter}
+        includeOrphaned={includeOrphaned}
+        onIncludeOrphaned={setIncludeOrphaned}
+        walletRead={{ provider: wallet.provider, chainId: wallet.chainId }}
+        publisher={health.data?.publisher?.status ?? "unknown"}
       />
 
       <footer className="rounded-lg bg-slate-100 p-3 text-xs text-slate-600">
@@ -86,7 +97,7 @@ export default function App() {
         <p>
           &quot;Observed&quot; is a fact read from the chain. &quot;Assessment&quot; is a rule-based judgement, not a verdict: ownership changes, pauses and large transfers are often routine.
           Coverage is limited to the registered addresses, the supported event signatures and the monitored tokens, and monitoring starts when an address is registered.
-          An on-chain audit record, once published, proves only that a record was submitted and included on-chain, not that the alert is correct.
+          An on-chain audit record proves only that a record was submitted and included on-chain, not that the alert is correct.
         </p>
       </footer>
     </main>

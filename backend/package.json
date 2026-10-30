@@ -9,7 +9,9 @@
     "probe:logs": "tsx src/scripts/probe-logs.ts",
     "monitor": "tsx src/scripts/monitor.ts",
     "report": "tsx src/scripts/report.ts",
-    "api": "tsx src/scripts/api.ts"
+    "api": "tsx src/scripts/api.ts",
+    "publish": "tsx src/scripts/publish.ts",
+    "reporter:check": "tsx src/scripts/reporter-check.ts"
   },
   "keywords": [],
   "author": "",

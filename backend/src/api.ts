@@ -55,6 +55,10 @@ function alertSummary(r: AlertWithTime) {
     detectedAt: r.detected_at,
     publishTxHash: r.publish_tx_hash,
     publishedAt: r.published_at,
+    publishNote: r.publish_note,
+    publishAttempts: r.publish_attempts,
+    publishBlock: r.publish_block,
+    verifiedAt: r.publish_verified_at,
   };
 }
 
@@ -88,6 +92,17 @@ export function createApi(opts: ApiOptions): { handler: (req: IncomingMessage, r
     return v === undefined ? undefined : Number(v);
   };
 
+  function publisherInfo(now: number) {
+    const lastRunAt = numMeta("publisher_last_run_at");
+    return {
+      status: lastRunAt === undefined ? "unknown" : now - lastRunAt <= staleAfter ? "ok" : "stale",
+      lastRunAt: lastRunAt ?? null,
+      secondsSinceLastRun: lastRunAt === undefined ? null : now - lastRunAt,
+      backlog: store.backlogCount(numMeta("publisher_min_severity") ?? 0),
+      statuses: store.statusCounts(),
+    };
+  }
+
   function health() {
     const uptimeSecs = Math.floor((Date.now() - startedAt) / 1000);
     if (!store.ready()) return { ok: false, dbReady: false, monitor: { status: "unknown" }, uptimeSecs };
@@ -111,6 +126,7 @@ export function createApi(opts: ApiOptions): { handler: (req: IncomingMessage, r
         blocksBehindHead: lastHead !== undefined && cp ? lastHead - cp.blockNumber : null,
         confirmations: opts.confirmations,
       },
+      publisher: publisherInfo(now),
       counts: store.counts(),
       counters: store.counters(),
       uptimeSecs,

@@ -19,10 +19,11 @@ export const api = {
   config: () => getJson<ApiConfig>("/api/config"),
   health: () => getJson<ApiHealth>("/api/health"),
   targets: async () => (await getJson<{ targets: ApiTarget[] }>("/api/targets")).targets,
-  alerts: (q: { minSeverity?: number; targetId?: number; limit?: number }) => {
+  alerts: (q: { minSeverity?: number; targetId?: number; limit?: number; includeOrphaned?: boolean }) => {
     const p = new URLSearchParams();
     if (q.minSeverity !== undefined) p.set("minSeverity", String(q.minSeverity));
     if (q.targetId !== undefined) p.set("targetId", String(q.targetId));
+    if (q.includeOrphaned) p.set("includeOrphaned", "1");
     p.set("limit", String(q.limit ?? 50));
     return getJson<{ alerts: ApiAlert[]; total: number }>("/api/alerts?" + p.toString());
   },
