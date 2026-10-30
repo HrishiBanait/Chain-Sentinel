@@ -1,0 +1,407 @@
+{
+  "generatedAt": "2026-10-30T17:36:31.281Z",
+  "network": "MST Testnet",
+  "chainId": 91562037,
+  "explorerUrl": "https://testnet.mstscan.com",
+  "registry": "0xc9f3d85de752a4112c6399c2bb6eb7f06697d945",
+  "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+  "commit": "0d572d5",
+  "config": {
+    "confirmations": 12,
+    "pollIntervalMs": 6000,
+    "gasPriceGwei": "2",
+    "chaos": false
+  },
+  "steps": [
+    {
+      "id": "S1",
+      "label": "transfer 999 tokens to the treasury (below the 1000 threshold)",
+      "signer": "owner",
+      "txHash": "0xfd100a80fb0ad030fe4976071759f3404661f67fc94d5e250be5a80ed90883cc",
+      "blockNumber": 6705358,
+      "minedAt": 1793381661,
+      "expected": []
+    },
+    {
+      "id": "S2",
+      "label": "transfer 1000 tokens to the treasury (exactly the threshold)",
+      "signer": "owner",
+      "txHash": "0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63",
+      "blockNumber": 6705359,
+      "minedAt": 1793381664,
+      "expected": [
+        "transfer.large"
+      ]
+    },
+    {
+      "id": "S3",
+      "label": "transfer 10000 tokens to the treasury (10x the threshold)",
+      "signer": "owner",
+      "txHash": "0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e",
+      "blockNumber": 6705360,
+      "minedAt": 1793381668,
+      "expected": [
+        "transfer.large"
+      ]
+    },
+    {
+      "id": "S4",
+      "label": "pause the token",
+      "signer": "owner",
+      "txHash": "0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543",
+      "blockNumber": 6705361,
+      "minedAt": 1793381671,
+      "expected": [
+        "pause.paused"
+      ]
+    },
+    {
+      "id": "S5",
+      "label": "unpause the token",
+      "signer": "owner",
+      "txHash": "0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56",
+      "blockNumber": 6705362,
+      "minedAt": 1793381673,
+      "expected": [
+        "pause.unpaused"
+      ]
+    },
+    {
+      "id": "S6",
+      "label": "transfer ownership to the current owner (no-op)",
+      "signer": "owner",
+      "txHash": "0x0473731d58eec0c5d2cb05cf945c0cd3836f035d565145e6280f84fa9bbd5a0e",
+      "blockNumber": 6705363,
+      "minedAt": 1793381676,
+      "expected": []
+    },
+    {
+      "id": "S7",
+      "label": "transfer ownership to the reporter account",
+      "signer": "owner",
+      "txHash": "0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02",
+      "blockNumber": 6705364,
+      "minedAt": 1793381680,
+      "expected": [
+        "ownership.changed"
+      ]
+    },
+    {
+      "id": "S8",
+      "label": "transfer ownership back to the deployer",
+      "signer": "reporter",
+      "txHash": "0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd",
+      "blockNumber": 6705365,
+      "minedAt": 1793381682,
+      "expected": [
+        "ownership.changed"
+      ]
+    },
+    {
+      "id": "S9",
+      "label": "disable monitored target #2 in the registry",
+      "signer": "owner",
+      "txHash": "0x7d28a478ca9914d45dda2c6d7f3298cee1dd9702d40f60bf3c42f9fa55560624",
+      "blockNumber": 6705366,
+      "minedAt": 1793381686,
+      "expected": []
+    },
+    {
+      "id": "S10",
+      "label": "pause the token while target #2 is disabled",
+      "signer": "owner",
+      "txHash": "0x0ce64a52e86d7218b99e2d6abfe8c56916f2527f326b0116a98aa0fe8b49b035",
+      "blockNumber": 6705367,
+      "minedAt": 1793381688,
+      "expected": []
+    },
+    {
+      "id": "S11",
+      "label": "re-enable target #2",
+      "signer": "owner",
+      "txHash": "0x406c612008c4995ef439778a05b4d91b4bda79d49ed95bf2e0f3ef35e557f100",
+      "blockNumber": 6705368,
+      "minedAt": 1793381693,
+      "expected": []
+    },
+    {
+      "id": "S12",
+      "label": "unpause the token (target enabled again)",
+      "signer": "owner",
+      "txHash": "0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082",
+      "blockNumber": 6705369,
+      "minedAt": 1793381695,
+      "expected": [
+        "pause.unpaused"
+      ]
+    },
+    {
+      "id": "S13",
+      "label": "raise target #1's threshold to 2000 tokens",
+      "signer": "owner",
+      "txHash": "0x2decf42a33d770a0b60dd840c74fa59a44d3097898af1cb27d8d934ac538bf62",
+      "blockNumber": 6705370,
+      "minedAt": 1793381698,
+      "expected": []
+    },
+    {
+      "id": "S14",
+      "label": "transfer 1500 tokens to the treasury (below the new threshold)",
+      "signer": "owner",
+      "txHash": "0xdfa4b2301c6c529756e106ba4bc124f0443bf435d1ee6185aadfcf4b1c3897d5",
+      "blockNumber": 6705371,
+      "minedAt": 1793381701,
+      "expected": []
+    },
+    {
+      "id": "S15",
+      "label": "transfer 2000 tokens to the treasury (exactly the new threshold)",
+      "signer": "owner",
+      "txHash": "0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4",
+      "blockNumber": 6705372,
+      "minedAt": 1793381704,
+      "expected": [
+        "transfer.large"
+      ]
+    },
+    {
+      "id": "S16",
+      "label": "restore target #1's threshold to 1000 tokens",
+      "signer": "owner",
+      "txHash": "0x1ba6f126007e50c986b8977af2a0525a8e1a0786f016260a2a091ae374d189e1",
+      "blockNumber": 6705373,
+      "minedAt": 1793381706,
+      "expected": []
+    }
+  ],
+  "comparison": {
+    "truePositives": [
+      {
+        "expected": {
+          "stepId": "S2",
+          "txHash": "0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2
+        },
+        "detected": {
+          "alertId": "0x91676e1caba40df9cbf09d01d16d1540fbadef36e0dec57783171ac0b7d702bd",
+          "txHash": "0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2,
+          "detectedAt": 1793381704,
+          "publishedAt": 1793381710,
+          "notifiedAt": 1793381712,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S3",
+          "txHash": "0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 3
+        },
+        "detected": {
+          "alertId": "0xb91b5f7d2345093ef5bb3012026f8af9f921ae0ffda353581330ee6752672f50",
+          "txHash": "0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 3,
+          "detectedAt": 1793381714,
+          "publishedAt": 1793381733,
+          "notifiedAt": 1793381725,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S4",
+          "txHash": "0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543",
+          "ruleId": "pause.paused",
+          "targetId": 2,
+          "severity": 2
+        },
+        "detected": {
+          "alertId": "0x6028acb528e9d1cc7a9e7ef7eda50b6ea12d8cf4bfd29d7a5141cb6645cb77fd",
+          "txHash": "0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543",
+          "ruleId": "pause.paused",
+          "targetId": 2,
+          "severity": 2,
+          "detectedAt": 1793381714,
+          "publishedAt": 1793381742,
+          "notifiedAt": 1793381726,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S5",
+          "txHash": "0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1
+        },
+        "detected": {
+          "alertId": "0x9a74b369f09efab0741acb20aba21b93117c4c752508737c1dbf27b3a358a67d",
+          "txHash": "0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1,
+          "detectedAt": 1793381714,
+          "publishedAt": 1793381746,
+          "notifiedAt": 1793381728,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S7",
+          "txHash": "0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3
+        },
+        "detected": {
+          "alertId": "0x9feaebe000b443d1fc1794f92ba3560c098d0c8a6e3f72c7707c6ccb29dc8332",
+          "txHash": "0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3,
+          "detectedAt": 1793381725,
+          "publishedAt": 1793381753,
+          "notifiedAt": 1793381742,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S8",
+          "txHash": "0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3
+        },
+        "detected": {
+          "alertId": "0x25bb3618cf3c2528f272915f13cb75f62334a33b60538522aaa3881db8297190",
+          "txHash": "0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3,
+          "detectedAt": 1793381725,
+          "publishedAt": 1793381758,
+          "notifiedAt": 1793381744,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S12",
+          "txHash": "0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1
+        },
+        "detected": {
+          "alertId": "0xf20ba353d68c606ddd26b3593afdeb1d0db4ed9e883e7771535c9bb72ed4d482",
+          "txHash": "0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1,
+          "detectedAt": 1793381737,
+          "publishedAt": 1793381784,
+          "notifiedAt": 1793381746,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S15",
+          "txHash": "0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2
+        },
+        "detected": {
+          "alertId": "0xe23dd9b1561ea70146ca0b23d4b19154954a54d91103d333f2d2e888d7d702e6",
+          "txHash": "0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2,
+          "detectedAt": 1793381749,
+          "publishedAt": 1793381788,
+          "notifiedAt": 1793381758,
+          "status": "published"
+        }
+      }
+    ],
+    "missed": [],
+    "falsePositives": [],
+    "unattributed": [],
+    "severityMismatches": [],
+    "silentTotal": 4,
+    "silentCorrect": 4,
+    "precision": 1,
+    "recall": 1
+  },
+  "latency": {
+    "detect": {
+      "n": 8,
+      "min": 40,
+      "median": 43,
+      "p90": 46,
+      "max": 46
+    },
+    "publish": {
+      "n": 8,
+      "min": 6,
+      "median": 30,
+      "p90": 47,
+      "max": 47
+    },
+    "notify": {
+      "n": 8,
+      "min": 8,
+      "median": 11.5,
+      "p90": 19,
+      "max": 19
+    },
+    "endToAudit": {
+      "n": 8,
+      "min": 46,
+      "median": 73,
+      "p90": 89,
+      "max": 89
+    },
+    "endToNotify": {
+      "n": 8,
+      "min": 48,
+      "median": 55,
+      "p90": 62,
+      "max": 62
+    }
+  },
+  "stagesMeasured": {
+    "publisher": true,
+    "notifier": true
+  },
+  "counters": {
+    "before": {
+      "batches_processed": 664,
+      "alerts_created": 8
+    },
+    "after": {
+      "batches_processed": 677,
+      "alerts_created": 16
+    }
+  },
+  "chaos": null,
+  "finalState": {
+    "pristine": true,
+    "problems": [],
+    "restoredBy": []
+  },
+  "incomplete": []
+}

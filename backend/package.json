@@ -13,7 +13,9 @@
     "publish": "tsx src/scripts/publish.ts",
     "reporter:check": "tsx src/scripts/reporter-check.ts",
     "notify": "tsx src/scripts/notify.ts",
-    "telegram:setup": "tsx src/scripts/telegram-setup.ts"
+    "telegram:setup": "tsx src/scripts/telegram-setup.ts",
+    "scenario": "tsx src/scripts/scenario.ts",
+    "metrics": "tsx src/scripts/metrics.ts"
   },
   "keywords": [],
   "author": "",

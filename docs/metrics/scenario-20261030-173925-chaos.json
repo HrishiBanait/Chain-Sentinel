@@ -1,0 +1,412 @@
+{
+  "generatedAt": "2026-10-30T17:39:25.955Z",
+  "network": "MST Testnet",
+  "chainId": 91562037,
+  "explorerUrl": "https://testnet.mstscan.com",
+  "registry": "0xc9f3d85de752a4112c6399c2bb6eb7f06697d945",
+  "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+  "commit": "0d572d5",
+  "config": {
+    "confirmations": 12,
+    "pollIntervalMs": 6000,
+    "gasPriceGwei": "2",
+    "chaos": true
+  },
+  "steps": [
+    {
+      "id": "S1",
+      "label": "transfer 999 tokens to the treasury (below the 1000 threshold)",
+      "signer": "owner",
+      "txHash": "0x9c80642dab7fc4b49542e9bf7029143aaca32c8617ab1d57334c4f31b77f9a4f",
+      "blockNumber": 6705418,
+      "minedAt": 1793381842,
+      "expected": []
+    },
+    {
+      "id": "S2",
+      "label": "transfer 1000 tokens to the treasury (exactly the threshold)",
+      "signer": "owner",
+      "txHash": "0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7",
+      "blockNumber": 6705419,
+      "minedAt": 1793381845,
+      "expected": [
+        "transfer.large"
+      ]
+    },
+    {
+      "id": "S3",
+      "label": "transfer 10000 tokens to the treasury (10x the threshold)",
+      "signer": "owner",
+      "txHash": "0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1",
+      "blockNumber": 6705420,
+      "minedAt": 1793381848,
+      "expected": [
+        "transfer.large"
+      ]
+    },
+    {
+      "id": "S4",
+      "label": "pause the token",
+      "signer": "owner",
+      "txHash": "0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067",
+      "blockNumber": 6705421,
+      "minedAt": 1793381850,
+      "expected": [
+        "pause.paused"
+      ]
+    },
+    {
+      "id": "S5",
+      "label": "unpause the token",
+      "signer": "owner",
+      "txHash": "0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3",
+      "blockNumber": 6705422,
+      "minedAt": 1793381854,
+      "expected": [
+        "pause.unpaused"
+      ]
+    },
+    {
+      "id": "S6",
+      "label": "transfer ownership to the current owner (no-op)",
+      "signer": "owner",
+      "txHash": "0x0050e14b682ff3a67986ce33e070f7075acff7f82fa27f526e723cf6ed842d44",
+      "blockNumber": 6705423,
+      "minedAt": 1793381857,
+      "expected": []
+    },
+    {
+      "id": "S7",
+      "label": "transfer ownership to the reporter account",
+      "signer": "owner",
+      "txHash": "0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526",
+      "blockNumber": 6705424,
+      "minedAt": 1793381860,
+      "expected": [
+        "ownership.changed"
+      ]
+    },
+    {
+      "id": "S8",
+      "label": "transfer ownership back to the deployer",
+      "signer": "reporter",
+      "txHash": "0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2",
+      "blockNumber": 6705425,
+      "minedAt": 1793381863,
+      "expected": [
+        "ownership.changed"
+      ]
+    },
+    {
+      "id": "S9",
+      "label": "disable monitored target #2 in the registry",
+      "signer": "owner",
+      "txHash": "0x4418dea08a8312902aec227a294fb0a743fbc8e03cc1f31539f900fab4894d2b",
+      "blockNumber": 6705426,
+      "minedAt": 1793381866,
+      "expected": []
+    },
+    {
+      "id": "S10",
+      "label": "pause the token while target #2 is disabled",
+      "signer": "owner",
+      "txHash": "0x5df00a067ce9540e76b7d1430102378d37c49335d3bea0a63c7c65727eaae865",
+      "blockNumber": 6705427,
+      "minedAt": 1793381868,
+      "expected": []
+    },
+    {
+      "id": "S11",
+      "label": "re-enable target #2",
+      "signer": "owner",
+      "txHash": "0x75efe92b9091371f34dd1c8d9735c21167e3444d549690d0f4cb3d13c7b0ebfb",
+      "blockNumber": 6705428,
+      "minedAt": 1793381872,
+      "expected": []
+    },
+    {
+      "id": "S12",
+      "label": "unpause the token (target enabled again)",
+      "signer": "owner",
+      "txHash": "0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644",
+      "blockNumber": 6705429,
+      "minedAt": 1793381874,
+      "expected": [
+        "pause.unpaused"
+      ]
+    },
+    {
+      "id": "S13",
+      "label": "raise target #1's threshold to 2000 tokens",
+      "signer": "owner",
+      "txHash": "0x56971630cf13d871a0e352b0993debd0b4eb0c5ec3d417f5b9d74e4eebea864f",
+      "blockNumber": 6705430,
+      "minedAt": 1793381878,
+      "expected": []
+    },
+    {
+      "id": "S14",
+      "label": "transfer 1500 tokens to the treasury (below the new threshold)",
+      "signer": "owner",
+      "txHash": "0x861abc93bb251298b6a5b7256c3fa7353d8b75dda47f5a9bfbee299b9c31f254",
+      "blockNumber": 6705431,
+      "minedAt": 1793381880,
+      "expected": []
+    },
+    {
+      "id": "S15",
+      "label": "transfer 2000 tokens to the treasury (exactly the new threshold)",
+      "signer": "owner",
+      "txHash": "0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823",
+      "blockNumber": 6705432,
+      "minedAt": 1793381884,
+      "expected": [
+        "transfer.large"
+      ]
+    },
+    {
+      "id": "S16",
+      "label": "restore target #1's threshold to 1000 tokens",
+      "signer": "owner",
+      "txHash": "0x7150c7506c2dfb03c6ffab2a4a1b13847774e2c8408c1b93b49612468b35b2ce",
+      "blockNumber": 6705433,
+      "minedAt": 1793381886,
+      "expected": []
+    }
+  ],
+  "comparison": {
+    "truePositives": [
+      {
+        "expected": {
+          "stepId": "S2",
+          "txHash": "0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2
+        },
+        "detected": {
+          "alertId": "0xedf8291197c147749c9de4ab7269da117152ef70c508acec2304dcab2ca88a87",
+          "txHash": "0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2,
+          "detectedAt": 1793381894,
+          "publishedAt": 1793381904,
+          "notifiedAt": 1793381901,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S3",
+          "txHash": "0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 3
+        },
+        "detected": {
+          "alertId": "0xf9b080b783b4470f2edfc164dd5896faa1512219b992a1fd7cbbb54f03ed0a24",
+          "txHash": "0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 3,
+          "detectedAt": 1793381894,
+          "publishedAt": 1793381908,
+          "notifiedAt": 1793381903,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S4",
+          "txHash": "0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067",
+          "ruleId": "pause.paused",
+          "targetId": 2,
+          "severity": 2
+        },
+        "detected": {
+          "alertId": "0xe349d69284db131c49c94d774aac066802399741423789d22c4a661ad0e5522d",
+          "txHash": "0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067",
+          "ruleId": "pause.paused",
+          "targetId": 2,
+          "severity": 2,
+          "detectedAt": 1793381894,
+          "publishedAt": 1793381915,
+          "notifiedAt": 1793381904,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S5",
+          "txHash": "0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1
+        },
+        "detected": {
+          "alertId": "0x88ce8084b675b97947a72fca8a7c8854cd21c0bf795027786fb669dc3a36ddb2",
+          "txHash": "0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1,
+          "detectedAt": 1793381894,
+          "publishedAt": 1793381921,
+          "notifiedAt": 1793381906,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S7",
+          "txHash": "0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3
+        },
+        "detected": {
+          "alertId": "0x5211877c5ae56a57aac940546f92d8571f68d854044fe47dba314dcbb47a5792",
+          "txHash": "0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3,
+          "detectedAt": 1793381905,
+          "publishedAt": 1793381941,
+          "notifiedAt": 1793381918,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S8",
+          "txHash": "0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3
+        },
+        "detected": {
+          "alertId": "0x404b676736be74ddb991ca1fcc1d0365c53a155fc1570a0c69fa55900dc91a06",
+          "txHash": "0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2",
+          "ruleId": "ownership.changed",
+          "targetId": 2,
+          "severity": 3,
+          "detectedAt": 1793381905,
+          "publishedAt": 1793381950,
+          "notifiedAt": 1793381920,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S12",
+          "txHash": "0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1
+        },
+        "detected": {
+          "alertId": "0x848320bb2d4e48783e844cafa7bd0378125dcbdc5bb0afdbe68d7e3389dde179",
+          "txHash": "0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644",
+          "ruleId": "pause.unpaused",
+          "targetId": 2,
+          "severity": 1,
+          "detectedAt": 1793381916,
+          "publishedAt": 1793381956,
+          "notifiedAt": 1793381921,
+          "status": "published"
+        }
+      },
+      {
+        "expected": {
+          "stepId": "S15",
+          "txHash": "0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2
+        },
+        "detected": {
+          "alertId": "0x1450da8045639f5db8d18aa3c822f603a84b19a0fc6c15ad249b58c9d44d2a0d",
+          "txHash": "0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823",
+          "ruleId": "transfer.large",
+          "targetId": 1,
+          "severity": 2,
+          "detectedAt": 1793381926,
+          "publishedAt": 1793381963,
+          "notifiedAt": 1793381935,
+          "status": "published"
+        }
+      }
+    ],
+    "missed": [],
+    "falsePositives": [],
+    "unattributed": [],
+    "severityMismatches": [],
+    "silentTotal": 4,
+    "silentCorrect": 4,
+    "precision": 1,
+    "recall": 1
+  },
+  "latency": {
+    "detect": {
+      "n": 8,
+      "min": 40,
+      "median": 43,
+      "p90": 49,
+      "max": 49
+    },
+    "publish": {
+      "n": 8,
+      "min": 10,
+      "median": 31.5,
+      "p90": 45,
+      "max": 45
+    },
+    "notify": {
+      "n": 8,
+      "min": 5,
+      "median": 9.5,
+      "p90": 15,
+      "max": 15
+    },
+    "endToAudit": {
+      "n": 8,
+      "min": 59,
+      "median": 73,
+      "p90": 87,
+      "max": 87
+    },
+    "endToNotify": {
+      "n": 8,
+      "min": 47,
+      "median": 54.5,
+      "p90": 58,
+      "max": 58
+    }
+  },
+  "stagesMeasured": {
+    "publisher": true,
+    "notifier": true
+  },
+  "counters": {
+    "before": {
+      "batches_processed": 677,
+      "alerts_created": 16
+    },
+    "after": {
+      "batches_processed": 688,
+      "alerts_created": 24
+    }
+  },
+  "chaos": {
+    "kills": 2,
+    "restarts": 2,
+    "catchUpSecs": 9,
+    "note": "Kills were not synchronized with batch boundaries; atomic batch commits are covered by unit tests. Outcome: compare the Result table with an uninterrupted run."
+  },
+  "finalState": {
+    "pristine": true,
+    "problems": [],
+    "restoredBy": []
+  },
+  "incomplete": []
+}

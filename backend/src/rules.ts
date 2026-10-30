@@ -2,7 +2,8 @@ import type { Hex } from "viem";
 import type { StoredEvent } from "./db.js";
 
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-export const RULE_VERSION = 1;
+// v2: transferring ownership to the current owner is no longer an alert (it changes nothing)
+export const RULE_VERSION = 2;
 // Same numbering as the Severity enum in ChainSentinelRegistry.sol.
 export const Severity = { Info: 0, Low: 1, Medium: 2, High: 3, Critical: 4 } as const;
 
@@ -36,6 +37,7 @@ export function assess(input: {
       const prev = String(event.args.previousOwner);
       const next = String(event.args.newOwner);
       if (prev === ZERO_ADDRESS) return null; // initial assignment at deployment is not a change
+      if (prev === next) return null; // no-op transfer: the owner did not change
       const renounced = next === ZERO_ADDRESS;
       return {
         ruleId: renounced ? "ownership.renounced" : "ownership.changed",
