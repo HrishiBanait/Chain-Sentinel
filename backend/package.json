@@ -11,7 +11,9 @@
     "report": "tsx src/scripts/report.ts",
     "api": "tsx src/scripts/api.ts",
     "publish": "tsx src/scripts/publish.ts",
-    "reporter:check": "tsx src/scripts/reporter-check.ts"
+    "reporter:check": "tsx src/scripts/reporter-check.ts",
+    "notify": "tsx src/scripts/notify.ts",
+    "telegram:setup": "tsx src/scripts/telegram-setup.ts"
   },
   "keywords": [],
   "author": "",
