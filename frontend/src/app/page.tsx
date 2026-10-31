@@ -3,7 +3,7 @@ import App from "@/components/App";
 
 export default function Home() {
   return (
-    <Suspense fallback={<div className="p-8 text-slate-500">Loading ChainSentinel…</div>}>
+    <Suspense fallback={<div className="cs-wrap cs-loading">Loading ChainSentinel…</div>}>
       <App />
     </Suspense>
   );

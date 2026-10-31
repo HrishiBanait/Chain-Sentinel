@@ -2,7 +2,7 @@
 
 ## Before recording
 
-- Run the monitor, publisher, notifier, API and dashboard. The dashboard should show the testnet badge and green status pills.
+- Run the monitor, publisher, notifier, API and dashboard as in [HOW_TO_DEPLOY.md](HOW_TO_DEPLOY.md). The dashboard should show the testnet badge and green status pills (monitor, publisher, notifier).
 - Unpause the token and check the fixture is in its starting state (`npm run scenario -- --dry-run`).
 - Hide secrets: keystore password prompts are hidden, but do not show `.env`, your Telegram token or any terminal that echoes keys. Show the bot chat only if it contains nothing private.
 - Have the trigger command ready in a terminal.

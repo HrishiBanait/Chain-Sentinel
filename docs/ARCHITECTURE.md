@@ -70,7 +70,7 @@ GET only, read-only SQLite access, bound to `127.0.0.1` by default, with a CORS 
 
 | Endpoint | Returns |
 |---|---|
-| `/api/health` | Monitor and publisher status, checkpoint lag, counts, counters |
+| `/api/health` | Monitor, publisher and notifier status, checkpoint lag, counts, counters |
 | `/api/config` | Network, chain ID, registry, explorer, confirmations, monitored tokens |
 | `/api/targets` | Targets with the latest configuration and alert counts |
 | `/api/alerts` | Alerts, newest first (`limit`, `offset`, `targetId`, `minSeverity`, `includeOrphaned`) |

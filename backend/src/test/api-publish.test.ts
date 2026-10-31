@@ -112,6 +112,10 @@ test("health reports publisher status, and a backlog that respects the publisher
 
     store.setMeta("publisher_last_run_at", String(now - 1000));
     assert.equal((await getJson(base, "/api/health")).body.publisher.status, "stale");
+
+    assert.equal((await getJson(base, "/api/health")).body.notifier.status, "unknown");
+    store.setMeta("notifier_last_run_at", String(now));
+    assert.equal((await getJson(base, "/api/health")).body.notifier.status, "ok");
     ps.close();
   });
 });

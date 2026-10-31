@@ -85,6 +85,7 @@ async function snapshotHealth(): Promise<ApiHealth> {
     dbReady: true,
     monitor: { status: "snapshot", snapshotAt: s.generatedAt, checkpointBlock: s.checkpointBlock, confirmations: s.config.confirmations },
     publisher: { status: "snapshot", lastRunAt: null, secondsSinceLastRun: null, backlog: 0, statuses: {} },
+    notifier: { status: "snapshot", lastRunAt: null, secondsSinceLastRun: null },
     counts: s.counts,
   };
 }

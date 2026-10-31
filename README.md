@@ -104,7 +104,7 @@ Run the pipeline read-only against the public testnet deployment (no keys needed
     npm run api          # terminal 2
     cd ../frontend && npm run dev     # terminal 3, then open http://localhost:3000
 
-The publisher (`npm run publish`) needs a reporter keystore that is authorized on the registry, and the notifier (`npm run notify`) needs a Telegram bot. Both are optional for reading data. All settings are documented in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#configuration).
+The publisher (`npm run publish`) needs a reporter keystore that is authorized on the registry, and the notifier (`npm run notify`) needs a Telegram bot. Both are optional for reading data. A local, on-camera walkthrough of deploy + monitor + publish + notify is in [docs/HOW_TO_DEPLOY.md](docs/HOW_TO_DEPLOY.md). All settings are documented in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#configuration).
 
 ## Verify an alert yourself
 
@@ -127,7 +127,7 @@ The second field of the on-chain record must equal the keccak256 of the evidence
 
 ## Documentation
 
-[Architecture](docs/ARCHITECTURE.md) · [Detection rules](docs/RULES.md) · [Security model](docs/SECURITY.md) · [Evidence](docs/EVIDENCE.md) · [Roadmap](docs/ROADMAP.md) · [Demo script](docs/DEMO.md)
+[Architecture](docs/ARCHITECTURE.md) · [Detection rules](docs/RULES.md) · [Security model](docs/SECURITY.md) · [Evidence](docs/EVIDENCE.md) · [Roadmap](docs/ROADMAP.md) · [How to deploy (local / video)](docs/HOW_TO_DEPLOY.md) · [Demo script](docs/DEMO.md) · [Hosted demo](docs/HOSTED_DEMO.md)
 
 ## License
 

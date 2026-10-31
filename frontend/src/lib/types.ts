@@ -29,6 +29,11 @@ export interface ApiHealth {
     backlog: number;
     statuses: Record<string, number>;
   };
+  notifier?: {
+    status: "ok" | "stale" | "unknown" | "snapshot";
+    lastRunAt: number | null;
+    secondsSinceLastRun: number | null;
+  };
   counts?: { events: number; alerts: number; targets: number };
   counters?: Record<string, number>;
 }
@@ -42,6 +47,8 @@ export interface ApiTarget {
   registrationTx: string | null;
   registrationBlock: number | null;
   alertCount: number;
+  monitored?: boolean;
+  notMonitoredReason?: string | null;
 }
 
 export interface ApiAlert {

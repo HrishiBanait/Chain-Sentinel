@@ -92,12 +92,18 @@ export function createApi(opts: ApiOptions): { handler: (req: IncomingMessage, r
     return v === undefined ? undefined : Number(v);
   };
 
-  function publisherInfo(now: number) {
-    const lastRunAt = numMeta("publisher_last_run_at");
+  function heartbeat(key: string, now: number) {
+    const lastRunAt = numMeta(key);
     return {
       status: lastRunAt === undefined ? "unknown" : now - lastRunAt <= staleAfter ? "ok" : "stale",
       lastRunAt: lastRunAt ?? null,
       secondsSinceLastRun: lastRunAt === undefined ? null : now - lastRunAt,
+    };
+  }
+
+  function publisherInfo(now: number) {
+    return {
+      ...heartbeat("publisher_last_run_at", now),
       backlog: store.backlogCount(numMeta("publisher_min_severity") ?? 0),
       statuses: store.statusCounts(),
     };
@@ -127,6 +133,7 @@ export function createApi(opts: ApiOptions): { handler: (req: IncomingMessage, r
         confirmations: opts.confirmations,
       },
       publisher: publisherInfo(now),
+      notifier: heartbeat("notifier_last_run_at", now),
       counts: store.counts(),
       counters: store.counters(),
       uptimeSecs,

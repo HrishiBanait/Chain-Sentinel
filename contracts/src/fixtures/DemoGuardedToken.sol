@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.24;
 
 /// @title DemoGuardedToken
 /// @notice TEST FIXTURE ONLY. A minimal ERC-20 subset (transfer only) with an owner and

@@ -10,6 +10,13 @@ import { describeError } from "@/lib/wallet";
 type Hex = `0x${string}`;
 type Send = (label: string, data: Hex) => Promise<void>;
 
+const REASONS: Record<string, string> = {
+  owner_cap: "this owner has reached the per-owner limit",
+  total_cap: "the monitor's total address limit was reached",
+  owner_not_allowed: "this owner is not on the operator's allowlist",
+};
+const reasonText = (r: string | null | undefined): string => (r ? (REASONS[r] ?? r) : "unknown reason");
+
 function ThresholdEditor({ disabled, onSave }: { disabled: boolean; onSave: (raw: bigint) => Promise<void> }) {
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState("");
@@ -18,7 +25,7 @@ function ThresholdEditor({ disabled, onSave }: { disabled: boolean; onSave: (raw
 
   if (!open) {
     return (
-      <button className="text-blue-700 underline disabled:opacity-50" disabled={disabled} onClick={() => setOpen(true)}>
+      <button className="cs-textbtn" disabled={disabled} onClick={() => setOpen(true)}>
         Change threshold
       </button>
     );
@@ -36,14 +43,24 @@ function ThresholdEditor({ disabled, onSave }: { disabled: boolean; onSave: (raw
     }
   };
   return (
-    <div className="space-y-1">
-      <div className="flex flex-wrap items-center gap-1">
-        <input className="w-24 rounded border border-slate-300 px-1 py-0.5" placeholder="tokens" value={amount} onChange={(e) => setAmount(e.target.value)} />
-        <input className="w-12 rounded border border-slate-300 px-1 py-0.5" title="token decimals" value={decimals} onChange={(e) => setDecimals(e.target.value)} />
-        <button className="rounded bg-slate-900 px-2 py-0.5 text-white" onClick={() => void save()}></button>
-        <button className="px-1 text-slate-600 underline" onClick={() => setOpen(false)}>Cancel</button>
+    <div className="cs-inline-form">
+      <div className="cs-inline-fields">
+        <input className="cs-input cs-input-sm" aria-label="New threshold in tokens" placeholder="Tokens" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} />
+        <input className="cs-input cs-input-xs" aria-label="Token decimals" value={decimals} onChange={(e) => setDecimals(e.target.value)} />
       </div>
-      {error && <p className="text-xs text-red-700">{error}</p>}
+      <div className="cs-inline-actions">
+        <button className="cs-btn cs-btn-small" onClick={() => void save()}>
+          Save threshold
+        </button>
+        <button className="cs-textbtn" onClick={() => setOpen(false)}>
+          Cancel
+        </button>
+      </div>
+      {error && (
+        <p className="cs-error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -72,66 +89,44 @@ function RegisterForm({ blockedReason, onSubmit }: { blockedReason: string | nul
     }
   };
 
-  
-return (
-  <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-3">
-    <h3 className="mb-2 text-sm font-semibold">
-      Register a monitored address
-    </h3>
-
-    <div className="grid gap-2 md:grid-cols-[2fr_1fr_5rem]">
-      <input
-        className="rounded-md border border-slate-300 px-2 py-1.5 font-mono text-sm"
-        placeholder="Contract or treasury address (0x…)"
-        value={target}
-        onChange={(e) => setTarget(e.target.value)}
-      />
-
-      <input
-        className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
-        placeholder="Large-transfer threshold (tokens)"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
-
-      <input
-        className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
-        title="Token decimals"
-        value={decimals}
-        onChange={(e) => setDecimals(e.target.value)}
-      />
-    </div>
-
-    <p className="mt-1 text-xs text-slate-600">
-      {parsed.ok
-        ? parsed.raw === BigInt(0)
-          ? "Threshold 0 turns the large-transfer rule off for this address."
-          : `Stored on-chain as ${parsed.raw.toString()} raw units.`
-        : parsed.error}{" "}
-      The threshold is a raw-unit number applied to the monitored tokens only;
-      the decimals field is just for conversion.
-    </p>
-
-    <div className="mt-2 flex flex-wrap items-center gap-3">
-      <button
-        className="rounded-md bg-slate-900 px-3 py-1.5 text-sm text-white disabled:opacity-50"
-        disabled={busy || blockedReason !== null}
-        onClick={() => void submit()}
-      >
-        {busy ? "Waiting for wallet…" : "Register with wallet"}
-      </button>
-
-      {blockedReason && (
-        <span className="text-xs text-slate-600">{blockedReason}</span>
+  return (
+    <div className="cs-register">
+      <h3 className="cs-h3">Watch an address</h3>
+      <label className="cs-field">
+        <span>Contract or treasury address</span>
+        <input className="cs-input cs-mono" placeholder="0x…" spellCheck={false} autoComplete="off" value={target} onChange={(e) => setTarget(e.target.value)} />
+      </label>
+      <div className="cs-field-row">
+        <label className="cs-field cs-grow">
+          <span>Alert on transfers of at least</span>
+          <input className="cs-input" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} />
+        </label>
+        <label className="cs-field">
+          <span>Token decimals</span>
+          <input className="cs-input cs-input-xs" value={decimals} onChange={(e) => setDecimals(e.target.value)} />
+        </label>
+      </div>
+      <p className="cs-help">
+        {parsed.ok
+          ? parsed.raw === 0n
+            ? "0 turns large-transfer alerts off for this address. Ownership and pause events are still watched."
+            : `Stored on-chain as ${parsed.raw.toString()} raw units.`
+          : parsed.error}{" "}
+        The threshold counts raw token units for the monitored tokens only. Decimals are used just to convert your number.
+      </p>
+      <div className="cs-actions">
+        <button className="cs-btn" disabled={busy || blockedReason !== null} onClick={() => void submit()}>
+          {busy ? "Waiting for wallet…" : "Watch this address"}
+        </button>
+        {blockedReason && <span className="cs-help">{blockedReason}</span>}
+      </div>
+      {error && (
+        <p className="cs-error" role="alert">
+          {error}
+        </p>
       )}
     </div>
-
-    {error && (
-      <p className="mt-2 text-sm text-red-700">{error}</p>
-    )}
-  </div>
-);
-
+  );
 }
 
 export default function TargetsPanel({
@@ -158,104 +153,110 @@ export default function TargetsPanel({
     try {
       await onSend(label, data);
     } catch (e) {
-      setActionError(describeError(e));
+      setActionError(describeError);
     } finally {
       setPendingKey(null);
     }
   };
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">Monitored targets</h2>
-      {error && <p className="mb-2 text-sm text-red-700">{error}</p>}
-      {targets && targets.length === 0 && <p className="text-sm text-slate-600">No targets registered yet.</p>}
+    <section className="cs-aside" aria-labelledby="watch-heading">
+      <div>
+        <h2 id="watch-heading" className="cs-h2">
+          Watched addresses
+        </h2>
+        <p className="cs-lede">Contracts and treasuries registered in the on-chain registry. Alerts are raised only for addresses listed here.</p>
+      </div>
+
+      {error && (
+        <p className="cs-error" role="alert">
+          {error}
+        </p>
+      )}
+      {!targets && !error && <p className="cs-soft">Loading…</p>}
+      {targets && targets.length === 0 && <p className="cs-soft">Nothing is watched yet. Add an address below to start.</p>}
 
       {targets && targets.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[760px] text-left text-sm">
-            <thead className="text-xs uppercase text-slate-500">
-              <tr>
-                <th className="py-1 pr-3">ID</th>
-                <th className="pr-3">Address</th>
-                <th className="pr-3">Owner</th>
-                <th className="pr-3">Status</th>
-                <th className="pr-3">Transfer threshold</th>
-                <th className="pr-3">Alerts</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {targets.map((t) => {
-                const mine = !!account && t.owner.toLowerCase() === account.toLowerCase();
-                const th = thresholdLabel(t.transferThresholdRaw);
-                const busy = pendingKey !== null;
-                return (
-                  <tr key={t.targetId} className="border-t border-slate-100 align-top">
-                    <td className="py-2 pr-3">#{t.targetId}</td>
-                    <td className="pr-3 font-mono text-xs">
-                      {cfg ? (
-                        <a className="text-blue-700 underline" href={addressUrl(cfg.explorerUrl, t.address)} target="_blank" rel="noreferrer">
-                          {short(getAddress(t.address), 8, 6)}
-                        </a>
-                      ) : (
-                        short(t.address, 8, 6)
-                      )}
-                    </td>
-                    <td className="pr-3 font-mono text-xs">
-                      {short(getAddress(t.owner), 6, 4)}
-                      {mine && <span className="ml-1 rounded bg-blue-100 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-blue-800">YOU</span>}
-                    </td>
-                    <td className="pr-3">
-                      <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${t.enabled ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-700"}`}>
-                        {t.enabled ? "Enabled" : "Disabled"}
-                      </span>
-                    </td>
-                    <td className="pr-3">
-                      <div>{th.main}</div>
-                      <div className="text-xs text-slate-500">{th.sub}</div>
-                    </td>
-                    <td className="pr-3">{t.alertCount}</td>
-                    <td className="space-y-1">
-                      {mine ? (
-                        <>
-                          <div>
-                            <button
-                              className="text-blue-700 underline disabled:opacity-50"
-                              disabled={busy || blockedReason !== null}
-                              onClick={() => void run(`en-${t.targetId}`, `${t.enabled ? "Disable" : "Enable"} target #${t.targetId}`, enabledData(t.targetId, !t.enabled))}
-                            >
-                              {pendingKey === `en-${t.targetId}` ? "Waiting for wallet…" : t.enabled ? "Disable" : "Enable"}
-                            </button>
-                          </div>
-                          <ThresholdEditor
-                            disabled={busy || blockedReason !== null}
-                            onSave={(raw) => onSend(`Set threshold of target #${t.targetId}`, thresholdData(t.targetId, raw))}
-                          />
-                        </>
-                      ) : (
-                        <span className="text-xs text-slate-400">owner only</span>
-                      )}
-                      {cfg && t.registrationTx && (
-                        <div>
-                          <a className="text-xs text-blue-700 underline" href={txUrl(cfg.explorerUrl, t.registrationTx)} target="_blank" rel="noreferrer">
-                            registration tx
-                          </a>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <ul className="cs-watchlist">
+          {targets.map((t) => {
+            const mine = !!account && t.owner.toLowerCase() === account.toLowerCase();
+            const th = thresholdLabel(t.transferThresholdRaw);
+            const busy = pendingKey !== null;
+            const notMonitored = t.monitored === false;
+            return (
+              <li key={t.targetId} className="cs-watch">
+                <div className="cs-watch-head">
+                  <span className="cs-watch-id">#{t.targetId}</span>
+                  {cfg ? (
+                    <a className="cs-mono" href={addressUrl(cfg.explorerUrl, t.address)} target="_blank" rel="noreferrer">
+                      {short(getAddress(t.address), 8, 6)}
+                    </a>
+                  ) : (
+                    <span className="cs-mono">{short(t.address, 8, 6)}</span>
+                  )}
+                  {notMonitored ? (
+                    <span className="cs-chip cs-chip-warn">Not monitored</span>
+                  ) : (
+                    <span className={`cs-chip ${t.enabled ? "cs-chip-ok" : "cs-chip-muted"}`}>{t.enabled ? "Watching" : "Stopped"}</span>
+                  )}
+                </div>
+                {notMonitored && <p className="cs-help cs-warn-text">Not monitored: {reasonText(t.notMonitoredReason)}.</p>}
+                <dl className="cs-facts">
+                  <div>
+                    <dt>Owner</dt>
+                    <dd>
+                      <span className="cs-mono">{short(getAddress(t.owner), 6, 4)}</span>
+                      {mine && <span className="cs-chip cs-chip-you">You</span>}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Large transfers</dt>
+                    <dd>{th.main}</dd>
+                  </div>
+                  <div>
+                    <dt>Alerts</dt>
+                    <dd>{t.alertCount}</dd>
+                  </div>
+                </dl>
+                <p className="cs-help">{th.sub}</p>
+                <div className="cs-watch-actions">
+                  {mine && !notMonitored ? (
+                    <>
+                      <button
+                        className="cs-textbtn"
+                        disabled={busy || blockedReason !== null}
+                        onClick={() =>
+                          void run(`en-${t.targetId}`, `${t.enabled ? "Stop watching" : "Resume watching"} #${t.targetId}`, enabledData(t.targetId, !t.enabled))
+                        }
+                      >
+                        {pendingKey === `en-${t.targetId}` ? "Waiting for wallet…" : t.enabled ? "Stop watching" : "Resume watching"}
+                      </button>
+                      <ThresholdEditor
+                        disabled={busy || blockedReason !== null}
+                        onSave={(raw) => onSend(`Chathreshold of #${t.targetId}`, thresholdData(t.targetId, raw))}
+                      />
+                    </>
+                  ) : (
+                    <span className="cs-help">{mine ? "Not monitored, so there is nothing to change." : "Only the owner can change this address."}</span>
+                  )}
+                  {cfg && t.registrationTx && (
+                    <a className="cs-help" href={txUrl(cfg.explorerUrl, t.registrationTx)} target="_blank" rel="noreferrer">
+                      Registration transaction
+                    </a>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       )}
-      {actionError && <p className="mt-2 text-sm text-red-700">{actionError}</p>}
+      {actionError && (
+        <p className="cs-error" role="alert">
+          {actionError}
+        </p>
+      )}
 
-      <RegisterForm
-        blockedReason={blockedReason}
-        onSubmit={(target, raw) => onSend(`Register ${short(target, 8, 6)}`, registerData(target, raw))}
-      />
+      <RegisterForm blockedReason={blockedReason} onSubmit={(target, raw) => onSend(`Watch ${short(target, 8, 6)}`, registerData(target, raw))} />
     </section>
   );
 }
