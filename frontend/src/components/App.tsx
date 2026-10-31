@@ -45,7 +45,7 @@ export default function App() {
     async (label: string, data: `0x${string}`) => {
       const provider = wallet.provider;
       if (!c || !provider || !wallet.account) throw new Error("Connect a wallet first.");
-      if (wallet.ainId !== c.chainId) throw new Error(`Switch your wallet to ${c.chainName} first.`);
+      if (wallet.chainId !== c.chainId) throw new Error(`Switch your wallet to ${c.chainName} first.`);
       // No fee fields: the wallet chooses them (verified with BridgeKey on MST Testnet).
       const hash = (await provider.request({
         method: "eth_sendTransaction",
