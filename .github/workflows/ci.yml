@@ -1,0 +1,82 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Build
+        working-directory: contracts
+        run: forge build --sizes
+      - name: Test
+        working-directory: contracts
+        run: forge test
+
+  backend:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [24, 26]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - name: Install
+        working-directory: backend
+        run: npm ci
+      - name: Type check
+        working-directory: backend
+        run: npx tsc --noEmit
+      - name: Tests
+        working-directory: backend
+        run: npm test
+      - name: Dependency audit (informational)
+        working-directory: backend
+        run: npm audit --omit=dev --audit-level=high
+        continue-on-error: true
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install
+        working-directory: frontend
+        run: npm ci
+      - name: Build
+        working-directory: frontend
+        run: npm run build
+
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No secrets or local state are tracked
+        run: |
+          bad=$(git ls-files | grep -E '(^|/)\.env(\.local)?$|(^|/)keystores?/|\.db$|\.sqlite3?$|(^|/)broadcast/|\.pem$' || true)
+          if [ -n "$bad" ]; then echo "Sensitive or local files are tracked:"; echo "$bad"; exit 1; fi
+          if git grep -nIE '[0-9]{8,10}:AA[A-Za-z0-9_-]{30,}' -- . ; then echo "A Telegram-token-like string is tracked"; exit 1; fi
+          if git grep -nIE '(private|secret|mnemonic|seed)[A-Za-z_]*[=:][^0-9a-fA-Fx]{0,4}(0x)?[0-9a-fA-F]{64}' -- . ; then echo "A private-key-like value is tracked"; exit 1; fi
+          echo "OK"
