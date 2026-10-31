@@ -17,7 +17,7 @@ ChainSentinel watches contracts and treasury addresses that you register in an M
 | Dashboard with BridgeKey | Implemented. Wallet connection, target registration and management, alert explanations and on-chain verification. |
 | Telegram notifications | Implemented and run live. |
 | Contract source verification on MSTScan | Not done yet. |
-| Public hosted demo | **Not done yet.** The dashboard currently runs locally. |
+| Hosted demo | **YOUR_URL_HERE**: a snapshot of real testnet data with live on-chain verification and wallet actions. New alerts need the live pipeline; see [docs/HOSTED_DEMO.md](docs/HOSTED_DEMO.md). |
 | Independent security audit | None. |
 
 Measured results come from scripted scenario runs on MST Testnet and are on a generated page: [docs/EVIDENCE.md](docs/EVIDENCE.md).

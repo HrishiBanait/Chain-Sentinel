@@ -15,7 +15,8 @@
     "notify": "tsx src/scripts/notify.ts",
     "telegram:setup": "tsx src/scripts/telegram-setup.ts",
     "scenario": "tsx src/scripts/scenario.ts",
-    "metrics": "tsx src/scripts/metrics.ts"
+    "metrics": "tsx src/scripts/metrics.ts",
+    "snapshot": "tsx src/scripts/snapshot.ts"
   },
   "keywords": [],
   "author": "",

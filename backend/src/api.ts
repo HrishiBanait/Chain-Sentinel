@@ -62,7 +62,7 @@ function alertSummary(r: AlertWithTime) {
   };
 }
 
-function alertDetail(r: AlertWithTime) {
+export function alertDetail(r: AlertWithTime) {
   let evidence: unknown = null;
   try {
     evidence = JSON.parse(r.evidence_json);

@@ -1,4 +1,5 @@
 import { CHAINS } from "./chains";
+import { directCall, proxyCall, RpcUnavailable, useProxy } from "./rpc";
 import type { Eip1193Provider } from "./wallet";
 
 export interface WalletRead {
@@ -17,37 +18,29 @@ export interface Reader {
 // Remember per RPC URL that the browser cannot call it directly (e.g. CORS), so we do not retry every call.
 const directBlocked = new Set<string>();
 
-async function rpcFetch(url: string, method: string, params: unknown[]): Promise<unknown> {
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
-      cache: "no-store",
-    });
-  } catch {
-    throw new ReadUnavailable("the browser could not call the MST RPC directly (probably blocked by CORS)");
-  }
-  if (!res.ok) throw new Error(`RPC returned HTTP ${res.status}`);
-  const body = (await res.json()) as { result?: unknown; error?: { message?: string } };
-  if (body.error) throw new Error(body.error.message ?? "RPC error");
-  return body.result;
-}
-
+/** Order of preference: this site's proxy (hosted deployments), the public RPC from the browser, then the wallet. */
 export function makeReader(chainId: number, wallet: WalletRead): Reader {
   const chain = CHAINS[chainId];
   let used: string | null = null;
   return {
     source: () => used,
     async call(method, params) {
+      if (useProxy()) {
+        try {
+          const r = await proxyCall(chainId, method, params);
+          used = "this site's RPC proxy to the MST node";
+          return r;
+        } catch (e) {
+          if (!(e instanceof RpcUnavailable)) throw e;
+        }
+      }
       if (chain && !directBlocked.has(chain.rpcUrl)) {
         try {
-          const r = await rpcFetch(chain.rpcUrl, method, params);
+          const r = await directCall(chain.rpcUrl, method, params);
           used = "the public MST RPC, called directly from your browser";
           return r;
         } catch (e) {
-          if (!(e instanceof ReadUnavailable)) throw e;
+          if (!(e instanceof RpcUnavailable)) throw e;
           directBlocked.add(chain.rpcUrl);
         }
       }
@@ -57,7 +50,7 @@ export function makeReader(chainId: number, wallet: WalletRead): Reader {
         return r;
       }
       throw new ReadUnavailable(
-        "The browser cannot reach the MST RPC directly and no wallet on the right network is connected. Connect your wallet on the right network, or run the cast commands shown below."
+        "The chain could not be read: no RPC path is available. Connect your wallet on the right network, or run the cast commands shown below."
       );
     },
   };

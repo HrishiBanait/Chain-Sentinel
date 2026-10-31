@@ -13,7 +13,8 @@ export interface ApiHealth {
   ok: boolean;
   dbReady: boolean;
   monitor: {
-    status: "ok" | "stale" | "unknown";
+    status: "ok" | "stale" | "unknown" | "snapshot";
+    snapshotAt?: number | null;
     lastSyncAt?: number | null;
     secondsSinceLastSync?: number | null;
     headBlock?: number | null;
@@ -21,15 +22,15 @@ export interface ApiHealth {
     blocksBehindHead?: number | null;
     confirmations?: number;
   };
-  counts?: { events: number; alerts: number; targets: number };
-  counters?: Record<string, number>;
   publisher?: {
-    status: "ok" | "stale" | "unknown";
+    status: "ok" | "stale" | "unknown" | "snapshot";
     lastRunAt: number | null;
     secondsSinceLastRun: number | null;
     backlog: number;
     statuses: Record<string, number>;
   };
+  counts?: { events: number; alerts: number; targets: number };
+  counters?: Record<string, number>;
 }
 
 export interface ApiTarget {
@@ -74,4 +75,15 @@ export interface ApiAlertDetail extends ApiAlert {
   evidence: unknown;
   evidenceJson: string;
   evidenceHashValid: boolean;
+}
+
+export interface Snapshot {
+  version: number;
+  generatedAt: number;
+  commit: string | null;
+  config: ApiConfig;
+  checkpointBlock: number | null;
+  counts: { events: number; alerts: number; targets: number };
+  targets: ApiTarget[];
+  alerts: ApiAlertDetail[];
 }

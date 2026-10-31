@@ -1,4 +1,4 @@
-import { addressUrl, short } from "@/lib/format";
+import { addressUrl, fmtTime, short } from "@/lib/format";
 import type { ApiConfig, ApiHealth } from "@/lib/types";
 
 export default function StatusBar({
@@ -10,12 +10,25 @@ export default function StatusBar({
   health: ApiHealth | null;
   apiError: string | null;
 }) {
-  const status = health?.monitor.status ?? "unknown";
-  const pill =
-    status === "ok" ? "bg-emerald-100 text-emerald-800" : status === "stale" ? "bg-red-100 text-red-800" : "bg-slate-200 text-slate-700";
-  const label = status === "ok" ? "Monitor running" : status === "stale" ? "Monitor stale" : "Monitor status unknown";
   const m = health?.monitor;
-  const pub = health?.publisher;
+  const snapshot = m?.status === "snapshot";
+  const status = m?.status ?? "unknown";
+  const pill = snapshot
+    ? "bg-sky-100 text-sky-800"
+    : status === "ok"
+      ? "bg-emerald-100 text-emerald-800"
+      : status === "stale"
+        ? "bg-red-100 text-red-800"
+        : "bg-slate-200 text-slate-700";
+  const label = snapshot
+    ? `Demo snapshot · ${fmtTime(m?.snapshotAt)}`
+    : status === "ok"
+      ? "Monitor running"
+      : status === "stale"
+        ? "Monitor stale"
+        : "Monitor status unknown";
+
+  const pub = snapshot ? undefined : health?.publisher;
   const pubPill =
     pub?.status === "ok" ? "bg-emerald-100 text-emerald-800" : pub?.status === "stale" ? "bg-red-100 text-red-800" : "bg-slate-200 text-slate-700";
   const pubLabel = pub?.status === "ok" ? "Publisher running" : pub?.status === "stale" ? "Publisher stale" : "Publisher not seen";
@@ -31,8 +44,7 @@ export default function StatusBar({
           {cfg && (
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                cfg.isTestnet ? "bg-amber-100 text-amber-800" : "bg-red-100 text-red-800"
-              }`}
+                cfg.isTestnet ? "bg-amber-100 text-amber-800" : "bg-red-100 text-red-800"              }`}
             >
               {cfg.isTestnet ? "TESTNET" : "MAINNET"} · {cfg.chainName}
             </span>
@@ -47,9 +59,7 @@ export default function StatusBar({
         </div>
       </div>
 
-      {apiError && (
-        <div className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-800">{apiError}</div>
-      )}
+      {apiError && <div className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-800">{apiError}</div>}
 
       <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-600">
         {cfg && (
@@ -60,11 +70,12 @@ export default function StatusBar({
             </a>
           </span>
         )}
-        {m?.headBlock != null && <span>Chain head: {m.headBlock}</span>}
+        {!snapshot && m?.headBlock != null && <span>Chain head: {m.headBlock}</span>}
         {m?.checkpointBlock != null && (
           <span>
-            Monitor checkpoint: {m.checkpointBlock}
-            {m.blocksBehindHead != null && ` (${m.blocksBehindHead} blocks behind head; about ${m.confirmations ?? "N"} is normal)`}
+            {snapshot ? "Snapshot taken at monitor checkpoint " : "Monitor checkpoint: "}
+            {m.checkpointBlock}
+            {!snapshot && m.blocksBehindHead != null && ` (${m.blocksBehindHead} blocks behind head; about ${m.confirmations ?? "N"} is normal)`}
           </span>
         )}
         {health?.counts && (

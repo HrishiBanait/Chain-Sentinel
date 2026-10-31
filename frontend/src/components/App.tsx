@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { getAddress } from "viem";
 import AlertsPanel from "@/components/AlertsPanel";
+import SnapshotNotice from "@/components/SnapshotNotice";
 import StatusBar from "@/components/StatusBar";
 import TargetsPanel from "@/components/TargetsPanel";
 import TxList, { type TxRecord } from "@/components/TxList";
@@ -34,9 +35,10 @@ export default function App() {
   const wallet = useWallet();
   const [txs, setTxs] = useState<TxRecord[]>([]);
   const c = cfg.data;
+  const snapshot = health.data?.monitor.status === "snapshot";
 
   let blockedReason: string | null = null;
-  if (!c) blockedReason = "Waiting for the API configuration.";
+  if (!c) blockedReason = "Waiting for the configuration.";
   else if (!wallet.account) blockedReason = "Connect your wallet to send transactions.";
   else if (wallet.chainId !== c.chainId) blockedReason = `Switch your wallet to ${c.chainName}.`;
 
@@ -64,6 +66,8 @@ export default function App() {
     <main className="mx-auto max-w-6xl space-y-5 px-4 py-6">
       <StatusBar cfg={c} health={health.data} apiError={cfg.error ?? health.error} />
 
+      {snapshot && c && <SnapshotNotice at={health.data?.monitor.snapshotAt ?? null} network={c.chainName} />}
+
       {c && !c.isTestnet && (
         <div className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-800">
           <strong>MAINNET.</strong> Transactions from this page use real MSTC.
@@ -74,7 +78,7 @@ export default function App() {
 
       <TargetsPanel cfg={c} targets={targets.data} error={targets.error} account={wallet.account} blockedReason={blockedReason} onSend={sendTx} />
 
-      <TxList txs={txs} explorerUrl={c?.explorerUrl ?? ""} confirmations={c?.confirmations ?? null} />
+      <TxList txs={txs} explorerUrl={c?.explorerUrl ?? ""} confirmations={snapshot ? null : (c?.confirmations ?? null)} />
 
       <AlertsPanel
         cfg={c}
@@ -85,11 +89,10 @@ export default function App() {
         minSeverity={minSeverity}
         onMinSeverity={setMinSeverity}
         targetFilter={targetFilter}
-        onTargetFilter={setTargetFilter}
-        includeOrphaned={includeOrphaned}
+        onTargetFilter={setTargetFilter}        includeOrphaned={includeOrphaned}
         onIncludeOrphaned={setIncludeOrphaned}
         walletRead={{ provider: wallet.provider, chainId: wallet.chainId }}
-        publisher={health.data?.publisher?.status ?? "unknown"}
+        publisher={snapshot ? "ok" : (health.data?.publisher?.status ?? "unknown")}
       />
 
       <footer className="rounded-lg bg-slate-100 p-3 text-xs text-slate-600">

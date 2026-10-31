@@ -1,0 +1,1471 @@
+{
+  "version": 1,
+  "generatedAt": 1793416066,
+  "commit": "2826e56",
+  "config": {
+    "network": "testnet",
+    "isTestnet": true,
+    "chainId": 91562037,
+    "chainName": "MST Testnet",
+    "registryAddress": "0xc9f3d85de752a4112c6399c2bb6eb7f06697d945",
+    "explorerUrl": "https://testnet.mstscan.com",
+    "confirmations": 12,
+    "monitoredTokens": [
+      "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c"
+    ]
+  },
+  "checkpointBlock": 6716675,
+  "counts": {
+    "events": 50,
+    "alerts": 24,
+    "targets": 4
+  },
+  "targets": [
+    {
+      "targetId": 1,
+      "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+      "owner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+      "enabled": true,
+      "transferThresholdRaw": "1000000000000000000000",
+      "registrationTx": "0x1e318dc62a80fe69fda3ad7eca094b2e4ca327d6cc4cf853a0c67a04ad09d981",
+      "registrationBlock": 6647584,
+      "alertCount": 8
+    },
+    {
+      "targetId": 2,
+      "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+      "owner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+      "enabled": true,
+      "transferThresholdRaw": "0",
+      "registrationTx": "0x6aaee7cd0f7632fe1c1d272bfd9f35784df828f528b26b933f34826e612cbc11",
+      "registrationBlock": 6660078,
+      "alertCount": 16
+    },
+    {
+      "targetId": 3,
+      "address": "0x000000000000000000000000000000000000dead",
+      "owner": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+      "enabled": true,
+      "transferThresholdRaw": "0",
+      "registrationTx": "0x1807fcba5ff07f93e514e62a1dd61fcd7157a02856d6774f4d90f881f23ae27d",
+      "registrationBlock": 6660723,
+      "alertCount": 0
+    },
+    {
+      "targetId": 4,
+      "address": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+      "owner": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+      "enabled": true,
+      "transferThresholdRaw": "250000000000000000000",
+      "registrationTx": "0x4c212b5bd44dd933727ecf678286239fddbebb8bac42a4da393774fa01c74359",
+      "registrationBlock": 6665458,
+      "alertCount": 0
+    }
+  ],
+  "alerts": [
+    {
+      "alertId": "0x1450da8045639f5db8d18aa3c822f603a84b19a0fc6c15ad249b58c9d44d2a0d",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 2,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 2000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823, block 6705432).",
+      "assessment": "The amount is 1x the configured threshold of 2000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x72d6af5798e096575e55ad8d3ab4d501e3deaaa0507fb758d454686133d6290d",
+      "sourceTxHash": "0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705432,
+      "sourceBlockTimestamp": 1793381883,
+      "status": "published",
+      "detectedAt": 1793381926,
+      "publishTxHash": "0x2caab9bc39476fc20ee229ea7b853bf92b9dffe3b867973534100096c1ae7f99",
+      "publishedAt": 1793381963,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705458,
+      "verifiedAt": 1793382002,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "1",
+          "thresholdRaw": "2000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "2000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "2000000000000000000000"
+          },
+          "blockHash": "0xb22b1fd1e0427ff81415ca91aaf4251251b8d8afc1e7a041ea1cfb88c4dcd0c3",
+          "blockNumber": "6705432",
+          "blockTimestamp": 1793381883,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "2000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"1\",\"thresholdRaw\":\"2000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"2000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"2000000000000000000000\"},\"blockHash\":\"0xb22b1fd1e0427ff81415ca91aaf4251251b8d8afc1e7a041ea1cfb88c4dcd0c3\",\"blockNumber\":\"6705432\",\"blockTimestamp\":1793381883,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0xbb6b6b6d6907f44bb4cc622fdf70deadf4884403249b0d7383b1fc7718f0b823\"},\"rule\":{\"id\":\"transfer.large\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"2000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x848320bb2d4e48783e844cafa7bd0378125dcbdc5bb0afdbe68d7e3389dde179",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.unpaused",
+      "ruleVersion": 2,
+      "severity": 1,
+      "severityLabel": "Low",
+      "title": "Contract unpaused",
+      "observed": "Unpaused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644, block 6705429).",
+      "assessment": "A monitored contract resumed operation after a pause. It is worth confirming that the reason for the pause was resolved.",
+      "caveat": "Unpausing is normal after maintenance or an incident response. This alert does not show whether the underlying issue was fixed.",
+      "evidenceHash": "0x092561e27d25d9d1c6cfa22228acda797e083ec06f9c166d1e177a7c7d485855",
+      "sourceTxHash": "0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705429,
+      "sourceBlockTimestamp": 1793381874,
+      "status": "published",
+      "detectedAt": 1793381916,
+      "publishTxHash": "0x8a4280f524e5257db9234f54ba8c3145da2ea16651710ba1dba22d70d30d3789",
+      "publishedAt": 1793381956,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705456,
+      "verifiedAt": 1793382001,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x836215f5c938fd41c8cda100b5437c2bdaca3f53b0cf5e9a186ab6e163e4fb65",
+          "blockNumber": "6705429",
+          "blockTimestamp": 1793381874,
+          "logIndex": 0,
+          "name": "Unpaused",
+          "txHash": "0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644"
+        },
+        "rule": {
+          "id": "pause.unpaused",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x836215f5c938fd41c8cda100b5437c2bdaca3f53b0cf5e9a186ab6e163e4fb65\",\"blockNumber\":\"6705429\",\"blockTimestamp\":1793381874,\"logIndex\":0,\"name\":\"Unpaused\",\"txHash\":\"0x79b90c6ea3bbb2772469110a327fd38d6c4e638cb352a6bdd97e5a80fe551644\"},\"rule\":{\"id\":\"pause.unpaused\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x404b676736be74ddb991ca1fcc1d0365c53a155fc1570a0c69fa55900dc91a06",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "ownership.changed",
+      "ruleVersion": 2,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Ownership changed",
+      "observed": "OwnershipTransferred emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c: previous owner 0xd42c15c727d8af7d88524e4164b010d31158d793, new owner 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2, block 6705425).",
+      "assessment": "Ownership of a monitored contract changed. The new owner can use any owner-only functions, so the change deserves review.",
+      "caveat": "Ownership changes are often routine (key rotation, handover to a multisig or timelock). This alert does not show that the change was unauthorized or malicious.",
+      "evidenceHash": "0x49a402294d9d7031e53633f8cb5d49b8b54d94b60c39824482df1a7207801dd9",
+      "sourceTxHash": "0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705425,
+      "sourceBlockTimestamp": 1793381862,
+      "status": "published",
+      "detectedAt": 1793381905,
+      "publishTxHash": "0x9cd0766410f1c9a7bf0758d4e6af948dbe72e865c3afaf036ed392d4cd6fc687",
+      "publishedAt": 1793381950,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705453,
+      "verifiedAt": 1793382000,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "newOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+          "previousOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "newOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "previousOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793"
+          },
+          "blockHash": "0x47807b4b85270cfee6cf2a5906727e4113a6453c8a81854c22848cad3e3c6fac",
+          "blockNumber": "6705425",
+          "blockTimestamp": 1793381862,
+          "logIndex": 0,
+          "name": "OwnershipTransferred",
+          "txHash": "0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2"
+        },
+        "rule": {
+          "id": "ownership.changed",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"newOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"previousOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"newOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"previousOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\"},\"blockHash\":\"0x47807b4b85270cfee6cf2a5906727e4113a6453c8a81854c22848cad3e3c6fac\",\"blockNumber\":\"6705425\",\"blockTimestamp\":1793381862,\"logIndex\":0,\"name\":\"OwnershipTransferred\",\"txHash\":\"0x27c48d994bfee7eb364a1644646571ef73c48b458353f4ea14ce00aa7e5c29a2\"},\"rule\":{\"id\":\"ownership.changed\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x5211877c5ae56a57aac940546f92d8571f68d854044fe47dba314dcbb47a5792",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "ownership.changed",
+      "ruleVersion": 2,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Ownership changed",
+      "observed": "OwnershipTransferred emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c: previous owner 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e, new owner 0xd42c15c727d8af7d88524e4164b010d31158d793 (tx 0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526, block 6705424).",
+      "assessment": "Ownership of a monitored contract changed. The new owner can use any owner-only functions, so the change deserves review.",
+      "caveat": "Ownership changes are often routine (key rotation, handover to a multisig or timelock). This alert does not show that the change was unauthorized or malicious.",
+      "evidenceHash": "0x68b27bf3205a3445dff6b967ba74259158aa9f15f7ea509e980b518eae45d278",
+      "sourceTxHash": "0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705424,
+      "sourceBlockTimestamp": 1793381859,
+      "status": "published",
+      "detectedAt": 1793381905,
+      "publishTxHash": "0x3f048b8afd3d62484b413d9602fbb66da2985f7d8f391d7eec43db8ccb60c5fa",
+      "publishedAt": 1793381941,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705451,
+      "verifiedAt": 1793381983,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "newOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+          "previousOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "newOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+            "previousOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x7301b960e316e80c5d75766bd5bed81381680b5e1c38622aa45baf745ed7d4f5",
+          "blockNumber": "6705424",
+          "blockTimestamp": 1793381859,
+          "logIndex": 0,
+          "name": "OwnershipTransferred",
+          "txHash": "0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526"
+        },
+        "rule": {
+          "id": "ownership.changed",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"newOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\",\"previousOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"newOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\",\"previousOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x7301b960e316e80c5d75766bd5bed81381680b5e1c38622aa45baf745ed7d4f5\",\"blockNumber\":\"6705424\",\"blockTimestamp\":1793381859,\"logIndex\":0,\"name\":\"OwnershipTransferred\",\"txHash\":\"0xae118e3c7d76dffd789c2a8e5b9f46e940ba99a7716aace170e7fd0440fa1526\"},\"rule\":{\"id\":\"ownership.changed\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x88ce8084b675b97947a72fca8a7c8854cd21c0bf795027786fb669dc3a36ddb2",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.unpaused",
+      "ruleVersion": 2,
+      "severity": 1,
+      "severityLabel": "Low",
+      "title": "Contract unpaused",
+      "observed": "Unpaused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3, block 6705422).",
+      "assessment": "A monitored contract resumed operation after a pause. It is worth confirming that the reason for the pause was resolved.",
+      "caveat": "Unpausing is normal after maintenance or an incident response. This alert does not show whether the underlying issue was fixed.",
+      "evidenceHash": "0xb622ce40b9f9e5afa014c60fcc69482f3bff95d7a28ae66b492b516c9050f53c",
+      "sourceTxHash": "0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705422,
+      "sourceBlockTimestamp": 1793381853,
+      "status": "published",
+      "detectedAt": 1793381894,
+      "publishTxHash": "0x8d72ff8e488ec8920778a224cf7772f248f152f048f1087a61737d1c5e3b1191",
+      "publishedAt": 1793381921,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705444,
+      "verifiedAt": 1793381983,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x8a1aeeccfa35395c6cdba1b7150f2ea298de03e7b3f3c5d1de9b163a44dad57f",
+          "blockNumber": "6705422",
+          "blockTimestamp": 1793381853,
+          "logIndex": 0,
+          "name": "Unpaused",
+          "txHash": "0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3"
+        },
+        "rule": {
+          "id": "pause.unpaused",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x8a1aeeccfa35395c6cdba1b7150f2ea298de03e7b3f3c5d1de9b163a44dad57f\",\"blockNumber\":\"6705422\",\"blockTimestamp\":1793381853,\"logIndex\":0,\"name\":\"Unpaused\",\"txHash\":\"0xc377fbebd6b82502ae962540d355e48deb5bf5584f8b77510ab719018a1923d3\"},\"rule\":{\"id\":\"pause.unpaused\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xe349d69284db131c49c94d774aac066802399741423789d22c4a661ad0e5522d",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.paused",
+      "ruleVersion": 2,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Contract paused",
+      "observed": "Paused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067, block 6705421).",
+      "assessment": "A monitored contract reported being paused. Pausing blocks the functions guarded by the pause switch.",
+      "caveat": "Pausing is a normal safety control and is often a protective response. The event alone does not show why it happened.",
+      "evidenceHash": "0xe94df4af5e3eb746f560019cf4c9646862a0be3dde137200d5747595d9529c57",
+      "sourceTxHash": "0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705421,
+      "sourceBlockTimestamp": 1793381850,
+      "status": "published",
+      "detectedAt": 1793381894,
+      "publishTxHash": "0x7c06090d29ee4aa4ed2fe129a45e36efe849becd0e3f6e14901fe6b880ed316a",
+      "publishedAt": 1793381915,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705442,
+      "verifiedAt": 1793381982,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x3b470836b9ff78a972f06a4d0080c55791598eccb7f280cda696b442d4fcbcac",
+          "blockNumber": "6705421",
+          "blockTimestamp": 1793381850,
+          "logIndex": 0,
+          "name": "Paused",
+          "txHash": "0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067"
+        },
+        "rule": {
+          "id": "pause.paused",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x3b470836b9ff78a972f06a4d0080c55791598eccb7f280cda696b442d4fcbcac\",\"blockNumber\":\"6705421\",\"blockTimestamp\":1793381850,\"logIndex\":0,\"name\":\"Paused\",\"txHash\":\"0xb9b50ee2958a3138f10a4ce1221107e0abee333fcb6b243a90e3ae6e8e1fe067\"},\"rule\":{\"id\":\"pause.paused\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xf9b080b783b4470f2edfc164dd5896faa1512219b992a1fd7cbbb54f03ed0a24",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 2,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 10000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1, block 6705420).",
+      "assessment": "The amount is 10x the configured threshold of 1000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0xae92a3d5daee3cfd4bbbaae71b3a27edb8840d9af85189e5a0d8595f373b0ce2",
+      "sourceTxHash": "0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705420,
+      "sourceBlockTimestamp": 1793381847,
+      "status": "published",
+      "detectedAt": 1793381894,
+      "publishTxHash": "0x63f1e8b739f68edaae95d7e318364b962297757c6398e6bdd39611d905074780",
+      "publishedAt": 1793381908,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705440,
+      "verifiedAt": 1793381981,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "10",
+          "thresholdRaw": "1000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "10000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "10000000000000000000000"
+          },
+          "blockHash": "0xcb5c9814863407f78870466ad4697987550d43ca14a00229c148d5d8cc188fd2",
+          "blockNumber": "6705420",
+          "blockTimestamp": 1793381847,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "1000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"10\",\"thresholdRaw\":\"1000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"10000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"10000000000000000000000\"},\"blockHash\":\"0xcb5c9814863407f78870466ad4697987550d43ca14a00229c148d5d8cc188fd2\",\"blockNumber\":\"6705420\",\"blockTimestamp\":1793381847,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0xe581c6c950ae6ef7eb46ae18114df45f4f4a34ee34fd48d2061bac24a6dcbae1\"},\"rule\":{\"id\":\"transfer.large\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"1000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xedf8291197c147749c9de4ab7269da117152ef70c508acec2304dcab2ca88a87",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 2,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 1000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7, block 6705419).",
+      "assessment": "The amount is 1x the configured threshold of 1000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x5b892c8bf3180a9bb514c8dce017b3220789fcffe35234d8a51d5bc8d1d1dc52",
+      "sourceTxHash": "0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705419,
+      "sourceBlockTimestamp": 1793381844,
+      "status": "published",
+      "detectedAt": 1793381894,
+      "publishTxHash": "0x307714dc2805b5c4ddc11b479960daef746753e7b22d722f3c17ba284abffa19",
+      "publishedAt": 1793381904,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705439,
+      "verifiedAt": 1793381980,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "1",
+          "thresholdRaw": "1000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "1000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "1000000000000000000000"
+          },
+          "blockHash": "0x97e05a0755e47214baeecb0c428c3cb93b878ee2f089b8f9a9698842dd8ab257",
+          "blockNumber": "6705419",
+          "blockTimestamp": 1793381844,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "1000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"1\",\"thresholdRaw\":\"1000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"1000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"1000000000000000000000\"},\"blockHash\":\"0x97e05a0755e47214baeecb0c428c3cb93b878ee2f089b8f9a9698842dd8ab257\",\"blockNumber\":\"6705419\",\"blockTimestamp\":1793381844,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0xa3373b41659f2d13de6ca6a4452cb852d9064c09527ee944295735d75e2536b7\"},\"rule\":{\"id\":\"transfer.large\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"1000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xe23dd9b1561ea70146ca0b23d4b19154954a54d91103d333f2d2e888d7d702e6",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 2,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 2000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4, block 6705372).",
+      "assessment": "The amount is 1x the configured threshold of 2000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x02569778ee062e5d7691897e36a644decc5968b751409a39517614d9e2af2ac5",
+      "sourceTxHash": "0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705372,
+      "sourceBlockTimestamp": 1793381703,
+      "status": "published",
+      "detectedAt": 1793381749,
+      "publishTxHash": "0xa65a6dd8884ead8be2d4ad247a00df9f980f955abdaff79bf0aa34b7c1c4a34a",
+      "publishedAt": 1793381788,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705400,
+      "verifiedAt": 1793381826,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "1",
+          "thresholdRaw": "2000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "2000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "2000000000000000000000"
+          },
+          "blockHash": "0x1173acf676de1b8e42c25957240517b48303ddaf2bad0401c78b03d0f63fd5fc",
+          "blockNumber": "6705372",
+          "blockTimestamp": 1793381703,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "2000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"1\",\"thresholdRaw\":\"2000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"2000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"2000000000000000000000\"},\"blockHash\":\"0x1173acf676de1b8e42c25957240517b48303ddaf2bad0401c78b03d0f63fd5fc\",\"blockNumber\":\"6705372\",\"blockTimestamp\":1793381703,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0x8c24bf4e2ab046d4b7b93808d51e1f7cf743daa1a68223e37b52b8f7b38fefe4\"},\"rule\":{\"id\":\"transfer.large\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"2000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xf20ba353d68c606ddd26b3593afdeb1d0db4ed9e883e7771535c9bb72ed4d482",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.unpaused",
+      "ruleVersion": 2,
+      "severity": 1,
+      "severityLabel": "Low",
+      "title": "Contract unpaused",
+      "observed": "Unpaused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082, block 6705369).",
+      "assessment": "A monitored contract resumed operation after a pause. It is worth confirming that the reason for the pause was resolved.",
+      "caveat": "Unpausing is normal after maintenance or an incident response. This alert does not show whether the underlying issue was fixed.",
+      "evidenceHash": "0xe2193654c2898088944f31830fcf55785597b183646fabe0b50f7134e536ddec",
+      "sourceTxHash": "0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705369,
+      "sourceBlockTimestamp": 1793381694,
+      "status": "published",
+      "detectedAt": 1793381737,
+      "publishTxHash": "0x25e1caeb87f3d88e5f98e4c2c0876d501687b0bb187f5631a358ac745238bf19",
+      "publishedAt": 1793381784,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705398,
+      "verifiedAt": 1793381825,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x17571dece62decd73f4298cff01a29c8194a3f3ff9a0bebaf9c939edcf250e74",
+          "blockNumber": "6705369",
+          "blockTimestamp": 1793381694,
+          "logIndex": 0,
+          "name": "Unpaused",
+          "txHash": "0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082"
+        },
+        "rule": {
+          "id": "pause.unpaused",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x17571dece62decd73f4298cff01a29c8194a3f3ff9a0bebaf9c939edcf250e74\",\"blockNumber\":\"6705369\",\"blockTimestamp\":1793381694,\"logIndex\":0,\"name\":\"Unpaused\",\"txHash\":\"0x69c749247d98692d42b4dcc47294efc4737c92be937fcc8605e5d760c1a50082\"},\"rule\":{\"id\":\"pause.unpaused\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x25bb3618cf3c2528f272915f13cb75f62334a33b60538522aaa3881db8297190",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "ownership.changed",
+      "ruleVersion": 2,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Ownership changed",
+      "observed": "OwnershipTransferred emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c: previous owner 0xd42c15c727d8af7d88524e4164b010d31158d793, new owner 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd, block 6705365).",
+      "assessment": "Ownership of a monitored contract changed. The new owner can use any owner-only functions, so the change deserves review.",
+      "caveat": "Ownership changes are often routine (key rotation, handover to a multisig or timelock). This alert does not show that the change was unauthorized or malicious.",
+      "evidenceHash": "0xf53ce07c03cca594191dee40be264ae625801fffcac66831d58764828432eee4",
+      "sourceTxHash": "0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705365,
+      "sourceBlockTimestamp": 1793381682,
+      "status": "published",
+      "detectedAt": 1793381725,
+      "publishTxHash": "0x800e0f14be67077d4661c2aeb39cac9efae7751b51483b06ed965975862a3eed",
+      "publishedAt": 1793381758,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705390,
+      "verifiedAt": 1793381808,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "newOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+          "previousOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "newOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "previousOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793"
+          },
+          "blockHash": "0xf0c2caa7fe47a46e08cf4c66669090539f190394d293f21085dd393a9dd78ec9",
+          "blockNumber": "6705365",
+          "blockTimestamp": 1793381682,
+          "logIndex": 0,
+          "name": "OwnershipTransferred",
+          "txHash": "0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd"
+        },
+        "rule": {
+          "id": "ownership.changed",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"newOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"previousOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"newOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"previousOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\"},\"blockHash\":\"0xf0c2caa7fe47a46e08cf4c66669090539f190394d293f21085dd393a9dd78ec9\",\"blockNumber\":\"6705365\",\"blockTimestamp\":1793381682,\"logIndex\":0,\"name\":\"OwnershipTransferred\",\"txHash\":\"0xce27f2c66a14f2429363bc8def89e6122b30c7e4617d070164c971a56bb1c4bd\"},\"rule\":{\"id\":\"ownership.changed\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x9feaebe000b443d1fc1794f92ba3560c098d0c8a6e3f72c7707c6ccb29dc8332",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "ownership.changed",
+      "ruleVersion": 2,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Ownership changed",
+      "observed": "OwnershipTransferred emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c: previous owner 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e, new owner 0xd42c15c727d8af7d88524e4164b010d31158d793 (tx 0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02, block 6705364).",
+      "assessment": "Ownership of a monitored contract changed. The new owner can use any owner-only functions, so the change deserves review.",
+      "caveat": "Ownership changes are often routine (key rotation, handover to a multisig or timelock). This alert does not show that the change was unauthorized or malicious.",
+      "evidenceHash": "0x6f14d72e7335c42d4fb19167857bc8b8c9fb23894e55f65232b599de8e9a490d",
+      "sourceTxHash": "0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705364,
+      "sourceBlockTimestamp": 1793381679,
+      "status": "published",
+      "detectedAt": 1793381725,
+      "publishTxHash": "0x345667125033e54440bc54130dda41543354ad8ad04468de753ce29130543d46",
+      "publishedAt": 1793381753,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705388,
+      "verifiedAt": 1793381807,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "newOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+          "previousOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "newOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+            "previousOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x5fa8e868b572d67dfd5729e0243299450de2d40be9bad49aa6835db3f502bc7f",
+          "blockNumber": "6705364",
+          "blockTimestamp": 1793381679,
+          "logIndex": 0,
+          "name": "OwnershipTransferred",
+          "txHash": "0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02"
+        },
+        "rule": {
+          "id": "ownership.changed",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"newOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\",\"previousOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"newOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\",\"previousOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x5fa8e868b572d67dfd5729e0243299450de2d40be9bad49aa6835db3f502bc7f\",\"blockNumber\":\"6705364\",\"blockTimestamp\":1793381679,\"logIndex\":0,\"name\":\"OwnershipTransferred\",\"txHash\":\"0x6ec35865ad9ae429cee19a909c9d888bcf91e84fda8f432143477cf0c24ace02\"},\"rule\":{\"id\":\"ownership.changed\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x9a74b369f09efab0741acb20aba21b93117c4c752508737c1dbf27b3a358a67d",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.unpaused",
+      "ruleVersion": 2,
+      "severity": 1,
+      "severityLabel": "Low",
+      "title": "Contract unpaused",
+      "observed": "Unpaused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56, block 6705362).",
+      "assessment": "A monitored contract resumed operation after a pause. It is worth confirming that the reason for the pause was resolved.",
+      "caveat": "Unpausing is normal after maintenance or an incident response. This alert does not show whether the underlying issue was fixed.",
+      "evidenceHash": "0x19a6ef720b818e1be72ed1af10c48a2f1d8ec0df9a4fbe3143bd4b2e09815325",
+      "sourceTxHash": "0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705362,
+      "sourceBlockTimestamp": 1793381673,
+      "status": "published",
+      "detectedAt": 1793381714,
+      "publishTxHash": "0x82d1c49b475ad413be8843ec1f49468c017ec714588790c7de4083dd8556f1a5",
+      "publishedAt": 1793381746,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705386,
+      "verifiedAt": 1793381806,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x02b89b7b5c2f522808a1484551aff42cb668813b099305d7f13cec2a5fe34643",
+          "blockNumber": "6705362",
+          "blockTimestamp": 1793381673,
+          "logIndex": 0,
+          "name": "Unpaused",
+          "txHash": "0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56"
+        },
+        "rule": {
+          "id": "pause.unpaused",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x02b89b7b5c2f522808a1484551aff42cb668813b099305d7f13cec2a5fe34643\",\"blockNumber\":\"6705362\",\"blockTimestamp\":1793381673,\"logIndex\":0,\"name\":\"Unpaused\",\"txHash\":\"0x9ef158b55fcbc3b2f3ffb49f964e192dbfba336ef22265bb2a35262d5bc86f56\"},\"rule\":{\"id\":\"pause.unpaused\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x6028acb528e9d1cc7a9e7ef7eda50b6ea12d8cf4bfd29d7a5141cb6645cb77fd",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.paused",
+      "ruleVersion": 2,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Contract paused",
+      "observed": "Paused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543, block 6705361).",
+      "assessment": "A monitored contract reported being paused. Pausing blocks the functions guarded by the pause switch.",
+      "caveat": "Pausing is a normal safety control and is often a protective response. The event alone does not show why it happened.",
+      "evidenceHash": "0xb1619ac34e35763132e1231d9f2c4f661072c5e880e6e90002781feea3d7ce4e",
+      "sourceTxHash": "0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705361,
+      "sourceBlockTimestamp": 1793381670,
+      "status": "published",
+      "detectedAt": 1793381714,
+      "publishTxHash": "0x8b973b536a2ee2f869049881906531edffded4e38d1f6f7736eca41955635e98",
+      "publishedAt": 1793381742,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705384,
+      "verifiedAt": 1793381805,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0xe37c29423fba3bdaff463bc8a2986e4e0d5d014463bdf4a9dcea614339dced82",
+          "blockNumber": "6705361",
+          "blockTimestamp": 1793381670,
+          "logIndex": 0,
+          "name": "Paused",
+          "txHash": "0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543"
+        },
+        "rule": {
+          "id": "pause.paused",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0xe37c29423fba3bdaff463bc8a2986e4e0d5d014463bdf4a9dcea614339dced82\",\"blockNumber\":\"6705361\",\"blockTimestamp\":1793381670,\"logIndex\":0,\"name\":\"Paused\",\"txHash\":\"0x8d30f64862a553b0e9e8dc1bfa59ab50dc1d1ffe3a6b9424a21311c43e04b543\"},\"rule\":{\"id\":\"pause.paused\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xb91b5f7d2345093ef5bb3012026f8af9f921ae0ffda353581330ee6752672f50",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 2,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 10000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e, block 6705360).",
+      "assessment": "The amount is 10x the configured threshold of 1000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x9539bc6506c7f5dfc78adc453f6698d742bdba1b093185adfc20c90b3cb313e5",
+      "sourceTxHash": "0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705360,
+      "sourceBlockTimestamp": 1793381667,
+      "status": "published",
+      "detectedAt": 1793381714,
+      "publishTxHash": "0xabf2963547b1d6c808b277a3d4183fa188a60fd61d1101f610b4d93ff3d5e261",
+      "publishedAt": 1793381733,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705381,
+      "verifiedAt": 1793381776,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "10",
+          "thresholdRaw": "1000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "10000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "10000000000000000000000"
+          },
+          "blockHash": "0x81e14f43945a70111115c1870d838833cfd7ab8e819ba4094de1f9cc7d20bab0",
+          "blockNumber": "6705360",
+          "blockTimestamp": 1793381667,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "1000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"10\",\"thresholdRaw\":\"1000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"10000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"10000000000000000000000\"},\"blockHash\":\"0x81e14f43945a70111115c1870d838833cfd7ab8e819ba4094de1f9cc7d20bab0\",\"blockNumber\":\"6705360\",\"blockTimestamp\":1793381667,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0x6552b428b1d8f09d75b04a8cecdd4d2d89477bda8763e550b6e5175df9a3512e\"},\"rule\":{\"id\":\"transfer.large\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"1000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x91676e1caba40df9cbf09d01d16d1540fbadef36e0dec57783171ac0b7d702bd",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 2,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 1000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63, block 6705359).",
+      "assessment": "The amount is 1x the configured threshold of 1000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x0afe77713a66dd2283c2cbd0553d3b66384124c2e52ac10600a5bd2d81d500cd",
+      "sourceTxHash": "0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705359,
+      "sourceBlockTimestamp": 1793381664,
+      "status": "published",
+      "detectedAt": 1793381704,
+      "publishTxHash": "0x127ff9cd965f88796270a6e0e95ad8db634e2a2919d52c08d571a6029cd72519",
+      "publishedAt": 1793381710,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705374,
+      "verifiedAt": 1793381775,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "1",
+          "thresholdRaw": "1000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "1000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "1000000000000000000000"
+          },
+          "blockHash": "0xed039178e3769bd6a39ac921a1b26dc10f6fa03284fb9c36c0d9395905f03ad7",
+          "blockNumber": "6705359",
+          "blockTimestamp": 1793381664,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 2
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "1000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"1\",\"thresholdRaw\":\"1000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"1000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"1000000000000000000000\"},\"blockHash\":\"0xed039178e3769bd6a39ac921a1b26dc10f6fa03284fb9c36c0d9395905f03ad7\",\"blockNumber\":\"6705359\",\"blockTimestamp\":1793381664,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0xcfcca6def372bd3cb02825bfe3da83ceff377ed94dbfdfca3bbfbee5204fbf63\"},\"rule\":{\"id\":\"transfer.large\",\"version\":2},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"1000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x0d708fc4b6bf0641792e291c0f445df7d04fba681cd2138416cbb32e81ab2b26",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.unpaused",
+      "ruleVersion": 1,
+      "severity": 1,
+      "severityLabel": "Low",
+      "title": "Contract unpaused",
+      "observed": "Unpaused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0xe69ac4bd275712130f548de0399d6d6cb4761fa13fda2f60504ba622bee76912, block 6705136).",
+      "assessment": "A monitored contract resumed operation after a pause. It is worth confirming that the reason for the pause was resolved.",
+      "caveat": "Unpausing is normal after maintenance or an incident response. This alert does not show whether the underlying issue was fixed.",
+      "evidenceHash": "0xf02ac1950cc29ac57859d0d08a2a628d49242903b2f2854a115cabee3892a308",
+      "sourceTxHash": "0xe69ac4bd275712130f548de0399d6d6cb4761fa13fda2f60504ba622bee76912",
+      "sourceLogIndex": 0,
+      "blockNumber": 6705136,
+      "sourceBlockTimestamp": 1793380995,
+      "status": "published",
+      "detectedAt": 1793381038,
+      "publishTxHash": "0x3c05218c0a146ce92590a316a3702dd5fa2de8919d4a14513adba45890a42c47",
+      "publishedAt": 1793381053,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6705155,
+      "verifiedAt": 1793381103,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0xb7dcbfabc2252a272f6b6886ce39c289dae4858df62feca0c49e5c2ea2084e6e",
+          "blockNumber": "6705136",
+          "blockTimestamp": 1793380995,
+          "logIndex": 0,
+          "name": "Unpaused",
+          "txHash": "0xe69ac4bd275712130f548de0399d6d6cb4761fa13fda2f60504ba622bee76912"
+        },
+        "rule": {
+          "id": "pause.unpaused",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0xb7dcbfabc2252a272f6b6886ce39c289dae4858df62feca0c49e5c2ea2084e6e\",\"blockNumber\":\"6705136\",\"blockTimestamp\":1793380995,\"logIndex\":0,\"name\":\"Unpaused\",\"txHash\":\"0xe69ac4bd275712130f548de0399d6d6cb4761fa13fda2f60504ba622bee76912\"},\"rule\":{\"id\":\"pause.unpaused\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xf50fb14bdaf9ae26f57b09e64c1f192faa994328386273e2a750ac5d2b82be90",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.paused",
+      "ruleVersion": 1,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Contract paused",
+      "observed": "Paused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0xacf2e8a2170c1bb32f121cc600bf827291d12d46de76813a741d2dbab46e0ec3, block 6688442).",
+      "assessment": "A monitored contract reported being paused. Pausing blocks the functions guarded by the pause switch.",
+      "caveat": "Pausing is a normal safety control and is often a protective response. The event alone does not show why it happened.",
+      "evidenceHash": "0x591df2f002e1cfda177db24610c04b3f328d94d7cd27bea0f921bf8529ea079a",
+      "sourceTxHash": "0xacf2e8a2170c1bb32f121cc600bf827291d12d46de76813a741d2dbab46e0ec3",
+      "sourceLogIndex": 0,
+      "blockNumber": 6688442,
+      "sourceBlockTimestamp": 1793330913,
+      "status": "published",
+      "detectedAt": 1793332327,
+      "publishTxHash": "0xaf03b6a4de9c4e557c09d6761982bafb58ad39f15ff9e797ef847d7ec75dc307",
+      "publishedAt": 1793333024,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6689145,
+      "verifiedAt": 1793333112,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x80511f73464e9c3d7a13475748a0ae0c826e27cf213fb1f85f134fa654795b08",
+          "blockNumber": "6688442",
+          "blockTimestamp": 1793330913,
+          "logIndex": 0,
+          "name": "Paused",
+          "txHash": "0xacf2e8a2170c1bb32f121cc600bf827291d12d46de76813a741d2dbab46e0ec3"
+        },
+        "rule": {
+          "id": "pause.paused",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x80511f73464e9c3d7a13475748a0ae0c826e27cf213fb1f85f134fa654795b08\",\"blockNumber\":\"6688442\",\"blockTimestamp\":1793330913,\"logIndex\":0,\"name\":\"Paused\",\"txHash\":\"0xacf2e8a2170c1bb32f121cc600bf827291d12d46de76813a741d2dbab46e0ec3\"},\"rule\":{\"id\":\"pause.paused\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xdacb9d6508e61e77c2ca677ace903e0e16e057db7443b767f87344b323b7976f",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 1,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 2000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0xe05ffaccade9925bb9e53613534896c42b30000ac5e131f775e824b5a441e9f3, block 6660260).",
+      "assessment": "The amount is 2x the configured threshold of 1000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x73bb1b168b3884542c748e91ecece376f5c63103a53814547c95f6076e8d6a6d",
+      "sourceTxHash": "0xe05ffaccade9925bb9e53613534896c42b30000ac5e131f775e824b5a441e9f3",
+      "sourceLogIndex": 0,
+      "blockNumber": 6660260,
+      "sourceBlockTimestamp": 1793246367,
+      "status": "published",
+      "detectedAt": 1793246477,
+      "publishTxHash": "0x025e243074e3c3362a92f5b00b06c185b24cf11bef3cc0690575d6977ada7958",
+      "publishedAt": 1793299324,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6677912,
+      "verifiedAt": 1793330877,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "2",
+          "thresholdRaw": "1000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "2000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "2000000000000000000000"
+          },
+          "blockHash": "0x02a194f46e788314887c1e4b0f3fb32a2e7f5fe23ce5a80ee83773cdb291e8cb",
+          "blockNumber": "6660260",
+          "blockTimestamp": 1793246367,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0xe05ffaccade9925bb9e53613534896c42b30000ac5e131f775e824b5a441e9f3"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "1000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"2\",\"thresholdRaw\":\"1000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"2000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"2000000000000000000000\"},\"blockHash\":\"0x02a194f46e788314887c1e4b0f3fb32a2e7f5fe23ce5a80ee83773cdb291e8cb\",\"blockNumber\":\"6660260\",\"blockTimestamp\":1793246367,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0xe05ffaccade9925bb9e53613534896c42b30000ac5e131f775e824b5a441e9f3\"},\"rule\":{\"id\":\"transfer.large\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"1000000000000000000000\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xa96fc202d5482f6c31d28f36e13ba01c838e8d6d25cd5f19c8f6bd993fa80364",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "ownership.changed",
+      "ruleVersion": 1,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Ownership changed",
+      "observed": "OwnershipTransferred emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c: previous owner 0xd42c15c727d8af7d88524e4164b010d31158d793, new owner 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x504defdb23d0c9b48548e6abe461a944706af8bcc66016c0a7438bcdeb6d21b0, block 6660253).",
+      "assessment": "Ownership of a monitored contract changed. The new owner can use any owner-only functions, so the change deserves review.",
+      "caveat": "Ownership changes are often routine (key rotation, handover to a multisig or timelock). This alert does not show that the change was unauthorized or malicious.",
+      "evidenceHash": "0xab4c0143438a81f5c650672a5f0b06f9475f3b9b9dbef190c01ebe72bbba12f2",
+      "sourceTxHash": "0x504defdb23d0c9b48548e6abe461a944706af8bcc66016c0a7438bcdeb6d21b0",
+      "sourceLogIndex": 0,
+      "blockNumber": 6660253,
+      "sourceBlockTimestamp": 1793246346,
+      "status": "published",
+      "detectedAt": 1793246477,
+      "publishTxHash": "0x7f7e61f018b8d7aeafeac14c9dfcbec69afbb187d8ae8b8530fe1af1bf861d8d",
+      "publishedAt": 1793299321,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6677910,
+      "verifiedAt": 1793330876,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "newOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+          "previousOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "newOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "previousOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793"
+          },
+          "blockHash": "0x1f61c9af7269bef594307869e0226210715ba713155698560e7f475dc9b07730",
+          "blockNumber": "6660253",
+          "blockTimestamp": 1793246346,
+          "logIndex": 0,
+          "name": "OwnershipTransferred",
+          "txHash": "0x504defdb23d0c9b48548e6abe461a944706af8bcc66016c0a7438bcdeb6d21b0"
+        },
+        "rule": {
+          "id": "ownership.changed",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"newOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"previousOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"newOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"previousOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\"},\"blockHash\":\"0x1f61c9af7269bef594307869e0226210715ba713155698560e7f475dc9b07730\",\"blockNumber\":\"6660253\",\"blockTimestamp\":1793246346,\"logIndex\":0,\"name\":\"OwnershipTransferred\",\"txHash\":\"0x504defdb23d0c9b48548e6abe461a944706af8bcc66016c0a7438bcdeb6d21b0\"},\"rule\":{\"id\":\"ownership.changed\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xf592ff40369244eb357b11f085a76207b918f725e56c277ef63c13824c6e5eb1",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "ownership.changed",
+      "ruleVersion": 1,
+      "severity": 3,
+      "severityLabel": "High",
+      "title": "Ownership changed",
+      "observed": "OwnershipTransferred emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c: previous owner 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e, new owner 0xd42c15c727d8af7d88524e4164b010d31158d793 (tx 0xbb43528c3308bb10ad11167866f7982deffd2190e42fbbd0e8a88421d84fb51f, block 6660246).",
+      "assessment": "Ownership of a monitored contract changed. The new owner can use any owner-only functions, so the change deserves review.",
+      "caveat": "Ownership changes are often routine (key rotation, handover to a multisig or timelock). This alert does not show that the change was unauthorized or malicious.",
+      "evidenceHash": "0x7db22ddbcc6a113bd5b6682faa0279b2fc403307f9822dfdd820ef5909faa582",
+      "sourceTxHash": "0xbb43528c3308bb10ad11167866f7982deffd2190e42fbbd0e8a88421d84fb51f",
+      "sourceLogIndex": 0,
+      "blockNumber": 6660246,
+      "sourceBlockTimestamp": 1793246325,
+      "status": "published",
+      "detectedAt": 1793246477,
+      "publishTxHash": "0x923ea67ef3ead0fbd8262b3a7566c149d1348c4711166ea966be83251567ce8e",
+      "publishedAt": 1793299313,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6677908,
+      "verifiedAt": 1793330875,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "newOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+          "previousOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "newOwner": "0xd42c15c727d8af7d88524e4164b010d31158d793",
+            "previousOwner": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x26aaa7da6dba15be5d09a43df11815f6699e7981ca815f2ddfde0c805760d025",
+          "blockNumber": "6660246",
+          "blockTimestamp": 1793246325,
+          "logIndex": 0,
+          "name": "OwnershipTransferred",
+          "txHash": "0xbb43528c3308bb10ad11167866f7982deffd2190e42fbbd0e8a88421d84fb51f"
+        },
+        "rule": {
+          "id": "ownership.changed",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"newOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\",\"previousOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"newOwner\":\"0xd42c15c727d8af7d88524e4164b010d31158d793\",\"previousOwner\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x26aaa7da6dba15be5d09a43df11815f6699e7981ca815f2ddfde0c805760d025\",\"blockNumber\":\"6660246\",\"blockTimestamp\":1793246325,\"logIndex\":0,\"name\":\"OwnershipTransferred\",\"txHash\":\"0xbb43528c3308bb10ad11167866f7982deffd2190e42fbbd0e8a88421d84fb51f\"},\"rule\":{\"id\":\"ownership.changed\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x6b260fd799b9adfc6b0b02ebefc887a5d90b151cbb8904e97eef93c03cff3bb2",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.unpaused",
+      "ruleVersion": 1,
+      "severity": 1,
+      "severityLabel": "Low",
+      "title": "Contract unpaused",
+      "observed": "Unpaused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x45a7861b5a3b60fe366d6647898c757031a69d3843bf4f53ee064deb289d7725, block 6660239).",
+      "assessment": "A monitored contract resumed operation after a pause. It is worth confirming that the reason for the pause was resolved.",
+      "caveat": "Unpausing is normal after maintenance or an incident response. This alert does not show whether the underlying issue was fixed.",
+      "evidenceHash": "0x1d840aa8e3c02d3a4af1e35990f03f4097eb7e6c82c0d161aef3df91ba2f4174",
+      "sourceTxHash": "0x45a7861b5a3b60fe366d6647898c757031a69d3843bf4f53ee064deb289d7725",
+      "sourceLogIndex": 0,
+      "blockNumber": 6660239,
+      "sourceBlockTimestamp": 1793246304,
+      "status": "published",
+      "detectedAt": 1793246477,
+      "publishTxHash": "0xb7422aa41a36025f1a3baab7ef4ba675748fe6be63c8c861db6c5891bda0fdfc",
+      "publishedAt": 1793299307,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6677906,
+      "verifiedAt": 1793330874,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0xe94b35ffeaade4f614befbe56358a3f30f4a59802c2bae8e9cbddd616c0d6dd6",
+          "blockNumber": "6660239",
+          "blockTimestamp": 1793246304,
+          "logIndex": 0,
+          "name": "Unpaused",
+          "txHash": "0x45a7861b5a3b60fe366d6647898c757031a69d3843bf4f53ee064deb289d7725"
+        },
+        "rule": {
+          "id": "pause.unpaused",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0xe94b35ffeaade4f614befbe56358a3f30f4a59802c2bae8e9cbddd616c0d6dd6\",\"blockNumber\":\"6660239\",\"blockTimestamp\":1793246304,\"logIndex\":0,\"name\":\"Unpaused\",\"txHash\":\"0x45a7861b5a3b60fe366d6647898c757031a69d3843bf4f53ee064deb289d7725\"},\"rule\":{\"id\":\"pause.unpaused\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0x8acdfaa439f7d73b4b5f21f81620c8cf127c67869620d4de13b1ea8a1bea07da",
+      "chainId": 91562037,
+      "targetId": 2,
+      "ruleId": "pause.paused",
+      "ruleVersion": 1,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Contract paused",
+      "observed": "Paused emitted by 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c, triggered by 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e (tx 0x01d1bbc9303a0bb4ec2c1ad22a4415cba96ee0e1c03ee1edba79c7933289a64c, block 6660235).",
+      "assessment": "A monitored contract reported being paused. Pausing blocks the functions guarded by the pause switch.",
+      "caveat": "Pausing is a normal safety control and is often a protective response. The event alone does not show why it happened.",
+      "evidenceHash": "0xee17388ade6fa422d391f90280099ff9213b10c18f7a784a64c253b7a628a905",
+      "sourceTxHash": "0x01d1bbc9303a0bb4ec2c1ad22a4415cba96ee0e1c03ee1edba79c7933289a64c",
+      "sourceLogIndex": 0,
+      "blockNumber": 6660235,
+      "sourceBlockTimestamp": 1793246292,
+      "status": "published",
+      "detectedAt": 1793246477,
+      "publishTxHash": "0x603904804e91f27e6eda00499d77afcec8bc5cd91e5f14457f3169c1c7986bea",
+      "publishedAt": 1793299302,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6677904,
+      "verifiedAt": 1793330873,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "account": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e"
+          },
+          "blockHash": "0x7e9eca21c99ef1d9741bb8a896c884f4efa9cf4edfc345de228bb37f75f0a266",
+          "blockNumber": "6660235",
+          "blockTimestamp": 1793246292,
+          "logIndex": 0,
+          "name": "Paused",
+          "txHash": "0x01d1bbc9303a0bb4ec2c1ad22a4415cba96ee0e1c03ee1edba79c7933289a64c"
+        },
+        "rule": {
+          "id": "pause.paused",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "id": 2,
+          "transferThreshold": "0"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"account\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\"},\"blockHash\":\"0x7e9eca21c99ef1d9741bb8a896c884f4efa9cf4edfc345de228bb37f75f0a266\",\"blockNumber\":\"6660235\",\"blockTimestamp\":1793246292,\"logIndex\":0,\"name\":\"Paused\",\"txHash\":\"0x01d1bbc9303a0bb4ec2c1ad22a4415cba96ee0e1c03ee1edba79c7933289a64c\"},\"rule\":{\"id\":\"pause.paused\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"id\":2,\"transferThreshold\":\"0\"}}",
+      "evidenceHashValid": true
+    },
+    {
+      "alertId": "0xbaf8b6971c69b6ebce575bc6f6a9b18147e2c5523249fe24dea28a56730bccca",
+      "chainId": 91562037,
+      "targetId": 1,
+      "ruleId": "transfer.large",
+      "ruleVersion": 1,
+      "severity": 2,
+      "severityLabel": "Medium",
+      "title": "Large inbound token transfer",
+      "observed": "Token 0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c moved 5000000000000000000000 raw units from 0x6e377dd5c5d55c25094baeff4eee736ee4097d4e to 0x52a1404119c7119986b8149f155b9bc1254f1047 (tx 0x8f8d2690986db5ad0ae6285bed906d5d19a71ea8a2a935b0211d4192dad51a85, block 6658639).",
+      "assessment": "The amount is 5x the configured threshold of 1000000000000000000000 raw units for monitored address 0x52a1404119c7119986b8149f155b9bc1254f1047 (inbound).",
+      "caveat": "Thresholds are in raw token units (decimals are not applied) and only monitored tokens are checked. A large transfer can be routine treasury activity; this alert does not show theft or an attack.",
+      "evidenceHash": "0x20482ad3558d98ad74320680af2e0a5c802658e51f03571d549a5844acb16040",
+      "sourceTxHash": "0x8f8d2690986db5ad0ae6285bed906d5d19a71ea8a2a935b0211d4192dad51a85",
+      "sourceLogIndex": 0,
+      "blockNumber": 6658639,
+      "sourceBlockTimestamp": 1793241504,
+      "status": "published",
+      "detectedAt": 1793245870,
+      "publishTxHash": "0x9f3f0e4ffc541a54dbc7dbf8057e8eea58d201c3ee41b6c85a3152f55350e8b7",
+      "publishedAt": 1793299294,
+      "publishNote": null,
+      "publishAttempts": 1,
+      "publishBlock": 6677902,
+      "verifiedAt": 1793330872,
+      "evidence": {
+        "chainId": 91562037,
+        "details": {
+          "direction": "inbound",
+          "multiple": "5",
+          "thresholdRaw": "1000000000000000000000",
+          "token": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "valueRaw": "5000000000000000000000"
+        },
+        "event": {
+          "address": "0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c",
+          "args": {
+            "from": "0x6e377dd5c5d55c25094baeff4eee736ee4097d4e",
+            "to": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+            "value": "5000000000000000000000"
+          },
+          "blockHash": "0xb8d999c2d9a3de55da2440708abc40007418af4f74db2b404739059219b8f2f2",
+          "blockNumber": "6658639",
+          "blockTimestamp": 1793241504,
+          "logIndex": 0,
+          "name": "Transfer",
+          "txHash": "0x8f8d2690986db5ad0ae6285bed906d5d19a71ea8a2a935b0211d4192dad51a85"
+        },
+        "rule": {
+          "id": "transfer.large",
+          "version": 1
+        },
+        "schema": "chainsentinel.evidence.v1",
+        "target": {
+          "address": "0x52a1404119c7119986b8149f155b9bc1254f1047",
+          "id": 1,
+          "transferThreshold": "1000000000000000000000"
+        }
+      },
+      "evidenceJson": "{\"chainId\":91562037,\"details\":{\"direction\":\"inbound\",\"multiple\":\"5\",\"thresholdRaw\":\"1000000000000000000000\",\"token\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"valueRaw\":\"5000000000000000000000\"},\"event\":{\"address\":\"0x58e42c5f3472f10d350aba6d5bff1b82bc50a28c\",\"args\":{\"from\":\"0x6e377dd5c5d55c25094baeff4eee736ee4097d4e\",\"to\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"value\":\"5000000000000000000000\"},\"blockHash\":\"0xb8d999c2d9a3de55da2440708abc40007418af4f74db2b404739059219b8f2f2\",\"blockNumber\":\"6658639\",\"blockTimestamp\":1793241504,\"logIndex\":0,\"name\":\"Transfer\",\"txHash\":\"0x8f8d2690986db5ad0ae6285bed906d5d19a71ea8a2a935b0211d4192dad51a85\"},\"rule\":{\"id\":\"transfer.large\",\"version\":1},\"schema\":\"chainsentinel.evidence.v1\",\"target\":{\"address\":\"0x52a1404119c7119986b8149f155b9bc1254f1047\",\"id\":1,\"transferThreshold\":\"1000000000000000000000\"}}",
+      "evidenceHashValid": true
+    }
+  ]
+}
